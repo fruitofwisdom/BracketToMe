@@ -5,10 +5,12 @@
     xmlns:local="using:BracketToMe"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d" Width="1024" Height="768">
+    <Page.Background>
+        <ImageBrush ImageSource="/Assets/CourtBackground.png"/>
+    </Page.Background>
 
     <Grid>
-
+        <TextBlock HorizontalAlignment="Left" Margin="50,50,0,0" TextWrapping="Wrap" Text="Bracket to me easy, doc." VerticalAlignment="Top" FontSize="36" Foreground="White"/>
     </Grid>
 </Page>
