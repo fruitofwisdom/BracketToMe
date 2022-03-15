@@ -74,7 +74,7 @@
         <TextBox HorizontalAlignment="Left" Margin="300,0,0,0" TextWrapping="Wrap" Text="Winner 29" VerticalAlignment="Center" Background="White" Width="125" IsReadOnly="True"/>
         <TextBox HorizontalAlignment="Right" Margin="0,0,300,0" TextWrapping="Wrap" Text="Winner 30" VerticalAlignment="Center" Background="White" Width="125" IsReadOnly="True"/>
         <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="Winner 31" VerticalAlignment="Center" Background="White" Width="125" IsReadOnly="True"/>
-        <Button Content="Edit Stats" Margin="0,27,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="125">
+        <Button Content="Open Team Data" Margin="0,27,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="125" Click="OpenTeamDataButtonClick">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
@@ -83,7 +83,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Run Simulation" Margin="0,64,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="125">
+        <Button x:Name="RunSimulationButton" Content="Run Simulation" Margin="0,64,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="125" Click="RunSimulationButtonClick" IsEnabled="False">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFD2D2D2" Offset="1"/>
