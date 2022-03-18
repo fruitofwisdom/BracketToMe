@@ -5,47 +5,50 @@ using Windows.UI.Xaml.Controls;
 
 namespace BracketToMe
 {
-    /// <summary>
-    /// The main page for the tournament results and interacted with the simulation.
-    /// </summary>
-    public sealed partial class MainPage : Page
-    {
-        private TeamData teamData = new TeamData();
+	/// <summary>
+	/// The main page for tournament results and interacting with the simulation.
+	/// </summary>
+	public sealed partial class MainPage : Page
+	{
+		private TeamData Data = new TeamData();
+		public TournamentResults Results = new TournamentResults();
 
-        public MainPage()
-        {
-            this.InitializeComponent();
-        }
+		public MainPage()
+		{
+			this.InitializeComponent();
+		}
 
-        private async void OpenTeamDataButtonClick(object sender, RoutedEventArgs e)
-        {
-            FileOpenPicker picker = new FileOpenPicker();
-            picker.ViewMode = PickerViewMode.List;
-            picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-            picker.FileTypeFilter.Add(".csv");
+		private async void OpenTeamDataButtonClick(object sender, RoutedEventArgs e)
+		{
+			FileOpenPicker picker = new FileOpenPicker();
+			picker.ViewMode = PickerViewMode.List;
+			picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+			picker.FileTypeFilter.Add(".csv");
 
-            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
-            if (file != null)
-            {
-                // Application now has read/write access to the picked file
-                Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(file);
-                await teamData.ReadFile(file);
+			Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+			if (file != null)
+			{
+				// Application now has read/write access to the picked file
+				Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(file);
+				await Data.ReadFile(file);
 
-                if (teamData.teams.Count > 0)
-                {
-                    Button runSimulationButton = FindName("RunSimulationButton") as Button;
-                    runSimulationButton.IsEnabled = true;
-                }
-            }
-            else
-            {
-                // Do something else
-            }
-        }
+				if (Data.Teams.Count > 0)
+				{
+					Results.Populate(Data);
 
-        private void RunSimulationButtonClick(object sender, RoutedEventArgs e)
-        {
-            ;
-        }
-    }
+					Button runSimulationButton = FindName("RunSimulationButton") as Button;
+					runSimulationButton.IsEnabled = true;
+				}
+			}
+			else
+			{
+				// Do something else
+			}
+		}
+
+		private void RunSimulationButtonClick(object sender, RoutedEventArgs e)
+		{
+			;
+		}
+	}
 }
