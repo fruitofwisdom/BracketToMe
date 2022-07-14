@@ -6,92 +6,154 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance Type=local:TournamentResults}"
-    mc:Ignorable="d" Width="1024" Height="768">
-    <Page.Background>
-        <ImageBrush ImageSource="/Assets/CourtBackground.png"/>
-    </Page.Background>
+    mc:Ignorable="d">
 
-    <Grid>
-        <local:ResultControl HorizontalAlignment="Left" Margin="25,25,0,0" Result="{x:Bind Results.LookUpResults('WestSeed1'), Mode=OneWay}" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,60,0,0" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('WestSeed16'), Mode=OneWay}" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,110,0,0" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('WestSeed8'), Mode=OneWay}" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,145,0,0" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('WestSeed9'), Mode=OneWay}" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,195,0,0" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('WestSeed5'), Mode=OneWay}" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,230,0,0" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('WestSeed12'), Mode=OneWay}" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,280,0,0" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('WestSeed4'), Mode=OneWay}" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,315,0,0" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('WestSeed13'), Mode=OneWay}" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,0,0,315" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('EastSeed1'), Mode=OneWay}" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,0,0,280" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('EastSeed16'), Mode=OneWay}" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,0,0,230" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('EastSeed8'), Mode=OneWay}" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,0,0,195" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('EastSeed9'), Mode=OneWay}" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,0,0,145" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('EastSeed5'), Mode=OneWay}" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,0,0,110" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('EastSeed12'), Mode=OneWay}" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,0,0,60" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('EastSeed4'), Mode=OneWay}" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,0,0,25" TextWrapping="Wrap" Text="{x:Bind Results.LookUpResults('EastSeed13'), Mode=OneWay}" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,25,25,0" TextWrapping="Wrap" Text="Team 17" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,60,25,0" TextWrapping="Wrap" Text="Team 18" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,110,25,0" TextWrapping="Wrap" Text="Team 19" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,145,25,0" TextWrapping="Wrap" Text="Team 20" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,195,25,0" TextWrapping="Wrap" Text="Team 21" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,230,25,0" TextWrapping="Wrap" Text="Team 22" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,280,25,0" TextWrapping="Wrap" Text="Team 23" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,315,25,0" TextWrapping="Wrap" Text="Team 24" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,25,315" TextWrapping="Wrap" Text="Team 25" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,25,280" TextWrapping="Wrap" Text="Team 26" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,25,230" TextWrapping="Wrap" Text="Team 27" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,25,195" TextWrapping="Wrap" Text="Team 28" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,25,145" TextWrapping="Wrap" Text="Team 29" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,25,110" TextWrapping="Wrap" Text="Team 30" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,25,60" TextWrapping="Wrap" Text="Team 31" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,5,25,25" TextWrapping="Wrap" Text="Team 32" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="157,42,0,0" TextWrapping="Wrap" Text="Winner 1" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="157,127,0,0" TextWrapping="Wrap" Text="Winner 2" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="157,212,0,0" TextWrapping="Wrap" Text="Winner 3" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="157,297,0,0" TextWrapping="Wrap" Text="Winner 4" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="260,85,0,0" TextWrapping="Wrap" Text="Winner 5" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="260,255,0,0" TextWrapping="Wrap" Text="Winner 6" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="360,170,0,0" TextWrapping="Wrap" Text="Winner 7" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="157,0,0,297" TextWrapping="Wrap" Text="Winner 8" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="157,0,0,212" TextWrapping="Wrap" Text="Winner 9" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="157,0,0,127" TextWrapping="Wrap" Text="Winner 10" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="157,0,0,42" TextWrapping="Wrap" Text="Winner 11" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="260,0,0,255" TextWrapping="Wrap" Text="Winner 12" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="260,0,0,85" TextWrapping="Wrap" Text="Winner 13" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="360,0,0,170" TextWrapping="Wrap" Text="Winner 14" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,42,157,0" TextWrapping="Wrap" Text="Winner 15" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,127,157,0" TextWrapping="Wrap" Text="Winner 16" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,212,157,0" TextWrapping="Wrap" Text="Winner 17" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,297,157,0" TextWrapping="Wrap" Text="Winner 18" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,85,260,0" TextWrapping="Wrap" Text="Winner 19" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,255,260,0" TextWrapping="Wrap" Text="Winner 20" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,170,360,0" TextWrapping="Wrap" Text="Winner 21" VerticalAlignment="Top" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,157,297" TextWrapping="Wrap" Text="Winner 22" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,157,212" TextWrapping="Wrap" Text="Winner 23" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,157,127" TextWrapping="Wrap" Text="Winner 24" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,157,42" TextWrapping="Wrap" Text="Winner 25" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,260,255" TextWrapping="Wrap" Text="Winner 26" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,260,85" TextWrapping="Wrap" Text="Winner 27" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,360,170" TextWrapping="Wrap" Text="Winner 28" VerticalAlignment="Bottom" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="300,0,0,0" TextWrapping="Wrap" Text="Winner 29" VerticalAlignment="Center" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,0,300,0" TextWrapping="Wrap" Text="Winner 30" VerticalAlignment="Center" Background="White" Width="125" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="Winner 31" VerticalAlignment="Center" Background="White" Width="125" IsReadOnly="True"/>
-        <Button Content="Open Team Data" Margin="0,27,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="125" Click="OpenTeamDataButtonClick">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="White" Offset="1"/>
-                    <GradientStop Color="#FFD2D2D2" Offset="0"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="RunSimulationButton" Content="Run Simulation" Margin="0,64,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="125" Click="RunSimulationButtonClick" IsEnabled="False">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFD2D2D2" Offset="1"/>
-                    <GradientStop Color="White" Offset="0"/>
-                    <GradientStop Color="Black" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-    </Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Canvas Width="1250" Height="1750">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Assets/CourtBackgroundFull.png" Stretch="None"/>
+            </Canvas.Background>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="25" Result="{x:Bind Results.LookUpResults('WestSeed1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="75" Result="{x:Bind Results.LookUpResults('WestSeed16'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="125" Result="{x:Bind Results.LookUpResults('WestSeed8'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="175" Result="{x:Bind Results.LookUpResults('WestSeed9'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="225" Result="{x:Bind Results.LookUpResults('WestSeed5'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="275" Result="{x:Bind Results.LookUpResults('WestSeed12'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="325" Result="{x:Bind Results.LookUpResults('WestSeed4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="375" Result="{x:Bind Results.LookUpResults('WestSeed13'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="425" Result="{x:Bind Results.LookUpResults('WestSeed6'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="475" Result="{x:Bind Results.LookUpResults('WestSeed11'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="525" Result="{x:Bind Results.LookUpResults('WestSeed3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="575" Result="{x:Bind Results.LookUpResults('WestSeed14'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="625" Result="{x:Bind Results.LookUpResults('WestSeed7'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="675" Result="{x:Bind Results.LookUpResults('WestSeed10'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="725" Result="{x:Bind Results.LookUpResults('WestSeed2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="775" Result="{x:Bind Results.LookUpResults('WestSeed15'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="50" Result="{x:Bind Results.LookUpResults('WestWinner1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="150" Result="{x:Bind Results.LookUpResults('WestWinner2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="250" Result="{x:Bind Results.LookUpResults('WestWinner3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="350" Result="{x:Bind Results.LookUpResults('WestWinner4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="450" Result="{x:Bind Results.LookUpResults('WestWinner5'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="550" Result="{x:Bind Results.LookUpResults('WestWinner6'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="650" Result="{x:Bind Results.LookUpResults('WestWinner7'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="750" Result="{x:Bind Results.LookUpResults('WestWinner8'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="310" Canvas.Top="100" Result="{x:Bind Results.LookUpResults('WestSweetSixteen1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="310" Canvas.Top="300" Result="{x:Bind Results.LookUpResults('WestSweetSixteen2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="310" Canvas.Top="500" Result="{x:Bind Results.LookUpResults('WestSweetSixteen3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="310" Canvas.Top="700" Result="{x:Bind Results.LookUpResults('WestSweetSixteen4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="445" Canvas.Top="200" Result="{x:Bind Results.LookUpResults('WestEliteEight1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="445" Canvas.Top="600" Result="{x:Bind Results.LookUpResults('WestEliteEight2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="950" Result="{x:Bind Results.LookUpResults('EastSeed1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1000" Result="{x:Bind Results.LookUpResults('EastSeed16'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1050" Result="{x:Bind Results.LookUpResults('EastSeed8'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1100" Result="{x:Bind Results.LookUpResults('EastSeed9'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1150" Result="{x:Bind Results.LookUpResults('EastSeed5'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1200" Result="{x:Bind Results.LookUpResults('EastSeed12'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1250" Result="{x:Bind Results.LookUpResults('EastSeed4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1300" Result="{x:Bind Results.LookUpResults('EastSeed13'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1350" Result="{x:Bind Results.LookUpResults('EastSeed6'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1400" Result="{x:Bind Results.LookUpResults('EastSeed11'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1450" Result="{x:Bind Results.LookUpResults('EastSeed3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1500" Result="{x:Bind Results.LookUpResults('EastSeed14'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1550" Result="{x:Bind Results.LookUpResults('EastSeed7'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1600" Result="{x:Bind Results.LookUpResults('EastSeed10'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1650" Result="{x:Bind Results.LookUpResults('EastSeed2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="25" Canvas.Top="1700" Result="{x:Bind Results.LookUpResults('EastSeed15'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="975" Result="{x:Bind Results.LookUpResults('EastWinner1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="1075" Result="{x:Bind Results.LookUpResults('EastWinner2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="1175" Result="{x:Bind Results.LookUpResults('EastWinner3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="1275" Result="{x:Bind Results.LookUpResults('EastWinner4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="1375" Result="{x:Bind Results.LookUpResults('EastWinner5'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="1475" Result="{x:Bind Results.LookUpResults('EastWinner6'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="1575" Result="{x:Bind Results.LookUpResults('EastWinner7'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="175" Canvas.Top="1675" Result="{x:Bind Results.LookUpResults('EastWinner8'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="310" Canvas.Top="1025" Result="{x:Bind Results.LookUpResults('EastSweetSixteen1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="310" Canvas.Top="1225" Result="{x:Bind Results.LookUpResults('EastSweetSixteen2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="310" Canvas.Top="1425" Result="{x:Bind Results.LookUpResults('EastSweetSixteen3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="310" Canvas.Top="1625" Result="{x:Bind Results.LookUpResults('EastSweetSixteen4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="445" Canvas.Top="1125" Result="{x:Bind Results.LookUpResults('EastEliteEight1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="445" Canvas.Top="1525" Result="{x:Bind Results.LookUpResults('EastEliteEight2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="25" Result="{x:Bind Results.LookUpResults('SouthSeed1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="75" Result="{x:Bind Results.LookUpResults('SouthSeed16'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="125" Result="{x:Bind Results.LookUpResults('SouthSeed8'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="175" Result="{x:Bind Results.LookUpResults('SouthSeed9'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="225" Result="{x:Bind Results.LookUpResults('SouthSeed5'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="275" Result="{x:Bind Results.LookUpResults('SouthSeed12'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="325" Result="{x:Bind Results.LookUpResults('SouthSeed4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="375" Result="{x:Bind Results.LookUpResults('SouthSeed13'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="425" Result="{x:Bind Results.LookUpResults('SouthSeed6'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="475" Result="{x:Bind Results.LookUpResults('SouthSeed11'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="525" Result="{x:Bind Results.LookUpResults('SouthSeed3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="575" Result="{x:Bind Results.LookUpResults('SouthSeed14'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="625" Result="{x:Bind Results.LookUpResults('SouthSeed7'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="675" Result="{x:Bind Results.LookUpResults('SouthSeed10'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="725" Result="{x:Bind Results.LookUpResults('SouthSeed2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="775" Result="{x:Bind Results.LookUpResults('SouthSeed15'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="50" Result="{x:Bind Results.LookUpResults('SouthWinner1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="150" Result="{x:Bind Results.LookUpResults('SouthWinner2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="250" Result="{x:Bind Results.LookUpResults('SouthWinner3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="350" Result="{x:Bind Results.LookUpResults('SouthWinner4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="450" Result="{x:Bind Results.LookUpResults('SouthWinner5'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="550" Result="{x:Bind Results.LookUpResults('SouthWinner6'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="650" Result="{x:Bind Results.LookUpResults('SouthWinner7'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="750" Result="{x:Bind Results.LookUpResults('SouthWinner8'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="815" Canvas.Top="100" Result="{x:Bind Results.LookUpResults('SouthSweetSixteen1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="815" Canvas.Top="300" Result="{x:Bind Results.LookUpResults('SouthSweetSixteen2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="815" Canvas.Top="500" Result="{x:Bind Results.LookUpResults('SouthSweetSixteen3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="815" Canvas.Top="700" Result="{x:Bind Results.LookUpResults('SouthSweetSixteen4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="680" Canvas.Top="200" Result="{x:Bind Results.LookUpResults('SouthEliteEight1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="680" Canvas.Top="600" Result="{x:Bind Results.LookUpResults('SouthEliteEight2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="950" Result="{x:Bind Results.LookUpResults('MidwestSeed1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1000" Result="{x:Bind Results.LookUpResults('MidwestSeed16'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1050" Result="{x:Bind Results.LookUpResults('MidwestSeed8'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1100" Result="{x:Bind Results.LookUpResults('MidwestSeed9'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1150" Result="{x:Bind Results.LookUpResults('MidwestSeed5'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1200" Result="{x:Bind Results.LookUpResults('MidwestSeed12'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1250" Result="{x:Bind Results.LookUpResults('MidwestSeed4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1300" Result="{x:Bind Results.LookUpResults('MidwestSeed13'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1350" Result="{x:Bind Results.LookUpResults('MidwestSeed6'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1400" Result="{x:Bind Results.LookUpResults('MidwestSeed11'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1450" Result="{x:Bind Results.LookUpResults('MidwestSeed3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1500" Result="{x:Bind Results.LookUpResults('MidwestSeed14'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1550" Result="{x:Bind Results.LookUpResults('MidwestSeed7'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1600" Result="{x:Bind Results.LookUpResults('MidwestSeed10'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1650" Result="{x:Bind Results.LookUpResults('MidwestSeed2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="1100" Canvas.Top="1700" Result="{x:Bind Results.LookUpResults('MidwestSeed15'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="975" Result="{x:Bind Results.LookUpResults('MidwestWinner1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="1075" Result="{x:Bind Results.LookUpResults('MidwestWinner2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="1175" Result="{x:Bind Results.LookUpResults('MidwestWinner3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="1275" Result="{x:Bind Results.LookUpResults('MidwestWinner4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="1375" Result="{x:Bind Results.LookUpResults('MidwestWinner5'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="1475" Result="{x:Bind Results.LookUpResults('MidwestWinner6'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="1575" Result="{x:Bind Results.LookUpResults('MidwestWinner7'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="950" Canvas.Top="1675" Result="{x:Bind Results.LookUpResults('MidwestWinner8'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="815" Canvas.Top="1025" Result="{x:Bind Results.LookUpResults('MidwestSweetSixteen1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="815" Canvas.Top="1225" Result="{x:Bind Results.LookUpResults('MidwestSweetSixteen2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="815" Canvas.Top="1425" Result="{x:Bind Results.LookUpResults('MidwestSweetSixteen3'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="815" Canvas.Top="1625" Result="{x:Bind Results.LookUpResults('MidwestSweetSixteen4'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="680" Canvas.Top="1125" Result="{x:Bind Results.LookUpResults('MidwestEliteEight1'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="680" Canvas.Top="1525" Result="{x:Bind Results.LookUpResults('MidwestEliteEight2'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="392" Canvas.Top="875" Result="{x:Bind Results.LookUpResults('WestEastFinalFour'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="737" Canvas.Top="875" Result="{x:Bind Results.LookUpResults('SouthMidwestFinalFour'), Mode=OneWay}"/>
+            <local:ResultControl Canvas.Left="562" Canvas.Top="875" Result="{x:Bind Results.LookUpResults('Champion'), Mode=OneWay}"/>
+            <Button Content="Open Team Data" VerticalAlignment="Top" Width="125" Click="OpenTeamDataButtonClick" Canvas.Left="562" Canvas.Top="10">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="#FFD2D2D2" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="RunSimulationButton" Content="Run Simulation" VerticalAlignment="Top" Width="125" Click="RunSimulationButtonClick" IsEnabled="False" Canvas.Left="562" Canvas.Top="51">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFD2D2D2" Offset="1"/>
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </Canvas>
+    </ScrollViewer>
 </Page>

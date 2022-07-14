@@ -194,7 +194,6 @@ namespace BracketToMe
 	EastSweetSixteen4
 	EastEliteEight1
 	EastEliteEight2
-	WestEastFinalFour
 	SouthSeed1
 	SouthSeed16
 	SouthSeed8
@@ -255,7 +254,8 @@ namespace BracketToMe
 	MidwestSweetSixteen4
 	MidwestEliteEight1
 	MidwestEliteEight2
+	WestEastFinalFour
 	SouthMidwestFinalFour
-	public string Champion
+	Champion
 	*/
 }
