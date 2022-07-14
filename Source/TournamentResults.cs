@@ -3,11 +3,18 @@ using System.ComponentModel;
 
 namespace BracketToMe
 {
+	public class Result
+	{
+		public int Seed;
+		public string Team;
+		public int Score;
+	}
+
 	public class TournamentResults : INotifyPropertyChanged
 	{
-		// TextBoxes will bind into this dictionary, one for each seed and winner, etc. See all
-		// possible field names at the bottom.
-		public Dictionary<string, string> Fields = new Dictionary<string, string>();
+		// ResultControls will bind into this dictionary, one for each seed and winner, etc. See
+		// all possible field names at the bottom.
+		public Dictionary<string, Result> Results = new Dictionary<string, Result>();
 
 		// This is invoked whenever the results are changed.
 		public event PropertyChangedEventHandler PropertyChanged = delegate { };
@@ -20,9 +27,16 @@ namespace BracketToMe
 				string fieldName = LookUpRegion(i);
 				fieldName += "Seed";
 				fieldName += LookUpSeed(i);
-
-				Fields.Add(fieldName, data.Teams[i].Name);
+				Result result = new Result
+				{
+					Seed = data.Teams[i].Seed,
+					Team = data.Teams[i].Name,
+					Score = 0       // TODO: Calculate scores and winners.
+				};
+				Results.Add(fieldName, result);
 			}
+
+			// TODO: Calculate winners and add them to Fields in the form outlined below.
 
 			PropertyChanged.Invoke(this, new PropertyChangedEventArgs("LookUpResults"));
 		}
@@ -121,19 +135,19 @@ namespace BracketToMe
 			return toReturn;
 		}
 
-		public string LookUpResults(string field)
+		public Result LookUpResults(string fieldName)
 		{
-			string toReturn = "";
-			if (Fields.ContainsKey(field))
+			Result toReturn = new Result();
+			if (Results.ContainsKey(fieldName))
 			{
-				toReturn = Fields[field];
+				toReturn = Results[fieldName];
 			}
 			return toReturn;
 		}
 	}
 
 	/*
-	The full list of seeds is:
+	The full list of field names is:
 	WestSeed1
 	WestSeed16
 	WestSeed8

@@ -10,11 +10,11 @@ namespace BracketToMe
 	public sealed partial class ResultControl : UserControl
 	{
 		public static readonly DependencyProperty ResultProperty =
-			DependencyProperty.Register("Result", typeof(string), typeof(ResultControl),
+			DependencyProperty.Register("Result", typeof(Result), typeof(ResultControl),
 			new PropertyMetadata(null, new PropertyChangedCallback(OnResultChanged)));
-		public string Result
+		public Result Result
 		{
-			get { return (string)GetValue(ResultProperty); }
+			get { return (Result)GetValue(ResultProperty); }
 			set { SetValue(ResultProperty, value); }
 		}
 
@@ -26,8 +26,16 @@ namespace BracketToMe
 		private static void OnResultChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			ResultControl control = (ResultControl)d;
-			TextBlock text = (TextBlock)control.FindName("ResultText");
-			text.Text = control.Result;
+			// If no team is in the results, then no results have been calculated yet.
+			if (control.Result.Team != null)
+			{
+				TextBlock seed = (TextBlock)control.FindName("SeedText");
+				seed.Text = control.Result.Seed.ToString();
+				TextBlock team = (TextBlock)control.FindName("TeamText");
+				team.Text = control.Result.Team;
+				TextBlock score = (TextBlock)control.FindName("ScoreText");
+				score.Text = control.Result.Score.ToString();
+			}
 		}
 	}
 }
