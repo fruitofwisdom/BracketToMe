@@ -18,7 +18,12 @@ namespace BracketToMe
 			this.InitializeComponent();
 		}
 
-		private async void OpenTeamDataButtonClick(object sender, RoutedEventArgs e)
+		private void QuitClick(object sender, RoutedEventArgs e)
+		{
+			Application.Current.Exit();
+		}
+
+		private async void OpenTeamDataClick(object sender, RoutedEventArgs e)
 		{
 			FileOpenPicker picker = new FileOpenPicker();
 			picker.ViewMode = PickerViewMode.List;
@@ -36,8 +41,8 @@ namespace BracketToMe
 				{
 					Results.Populate(Data);
 
-					Button runSimulationButton = FindName("RunSimulationButton") as Button;
-					runSimulationButton.IsEnabled = true;
+					MenuFlyoutItem runSimulationMenuItem = FindName("RunSimulationMenuItem") as MenuFlyoutItem;
+					runSimulationMenuItem.IsEnabled = true;
 				}
 			}
 			else
@@ -46,9 +51,9 @@ namespace BracketToMe
 			}
 		}
 
-		private void RunSimulationButtonClick(object sender, RoutedEventArgs e)
+		private void RunSimulationClick(object sender, RoutedEventArgs e)
 		{
-			;
+			// TODO: Run the simulation.
 		}
 	}
 }

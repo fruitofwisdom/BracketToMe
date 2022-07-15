@@ -29,11 +29,11 @@ namespace BracketToMe
 			// If no team is in the results, then no results have been calculated yet.
 			if (control.Result.Team != null)
 			{
-				TextBlock seed = (TextBlock)control.FindName("SeedText");
+				TextBlock seed = control.FindName("SeedText") as TextBlock;
 				seed.Text = control.Result.Seed.ToString();
-				TextBlock team = (TextBlock)control.FindName("TeamText");
+				TextBlock team = control.FindName("TeamText") as TextBlock;
 				team.Text = control.Result.Team;
-				TextBlock score = (TextBlock)control.FindName("ScoreText");
+				TextBlock score = control.FindName("ScoreText") as TextBlock;
 				score.Text = control.Result.Score.ToString();
 			}
 		}
