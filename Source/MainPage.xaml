@@ -54,6 +54,7 @@
                 <local:ResultControl Canvas.Left="310" Canvas.Top="700" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('WestSweetSixteen4')}"/>
                 <local:ResultControl Canvas.Left="445" Canvas.Top="200" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('WestEliteEight1')}"/>
                 <local:ResultControl Canvas.Left="445" Canvas.Top="600" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('WestEliteEight2')}"/>
+                <local:ResultControl Canvas.Left="470" Canvas.Top="400" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('WestFinalFour')}"/>
                 <local:ResultControl Canvas.Left="25" Canvas.Top="950" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('EastSeed1')}"/>
                 <local:ResultControl Canvas.Left="25" Canvas.Top="1000" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('EastSeed16')}"/>
                 <local:ResultControl Canvas.Left="25" Canvas.Top="1050" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('EastSeed8')}"/>
@@ -84,6 +85,7 @@
                 <local:ResultControl Canvas.Left="310" Canvas.Top="1625" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('EastSweetSixteen4')}"/>
                 <local:ResultControl Canvas.Left="445" Canvas.Top="1125" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('EastEliteEight1')}"/>
                 <local:ResultControl Canvas.Left="445" Canvas.Top="1525" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('EastEliteEight2')}"/>
+                <local:ResultControl Canvas.Left="470" Canvas.Top="1325" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('EastFinalFour')}"/>
                 <local:ResultControl Canvas.Left="1100" Canvas.Top="25" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('SouthSeed1')}"/>
                 <local:ResultControl Canvas.Left="1100" Canvas.Top="75" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('SouthSeed16')}"/>
                 <local:ResultControl Canvas.Left="1100" Canvas.Top="125" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('SouthSeed8')}"/>
@@ -114,6 +116,7 @@
                 <local:ResultControl Canvas.Left="815" Canvas.Top="700" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('SouthSweetSixteen4')}"/>
                 <local:ResultControl Canvas.Left="680" Canvas.Top="200" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('SouthEliteEight1')}"/>
                 <local:ResultControl Canvas.Left="680" Canvas.Top="600" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('SouthEliteEight2')}"/>
+                <local:ResultControl Canvas.Left="655" Canvas.Top="400" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('SouthFinalFour')}"/>
                 <local:ResultControl Canvas.Left="1100" Canvas.Top="950" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('MidwestSeed1')}"/>
                 <local:ResultControl Canvas.Left="1100" Canvas.Top="1000" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('MidwestSeed16')}"/>
                 <local:ResultControl Canvas.Left="1100" Canvas.Top="1050" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('MidwestSeed8')}"/>
@@ -144,8 +147,9 @@
                 <local:ResultControl Canvas.Left="815" Canvas.Top="1625" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('MidwestSweetSixteen4')}"/>
                 <local:ResultControl Canvas.Left="680" Canvas.Top="1125" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('MidwestEliteEight1')}"/>
                 <local:ResultControl Canvas.Left="680" Canvas.Top="1525" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('MidwestEliteEight2')}"/>
-                <local:ResultControl Canvas.Left="392" Canvas.Top="875" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('WestEastFinalFour')}"/>
-                <local:ResultControl Canvas.Left="737" Canvas.Top="875" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('SouthMidwestFinalFour')}"/>
+                <local:ResultControl Canvas.Left="655" Canvas.Top="1325" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('MidwestFinalFour')}"/>
+                <local:ResultControl Canvas.Left="392" Canvas.Top="875" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('WestEastChampion')}"/>
+                <local:ResultControl Canvas.Left="737" Canvas.Top="875" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('SouthMidwestChampion')}"/>
                 <local:ResultControl Canvas.Left="562" Canvas.Top="875" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('Champion')}"/>
             </Canvas>
         </ScrollViewer>

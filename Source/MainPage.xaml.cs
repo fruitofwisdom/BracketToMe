@@ -53,7 +53,7 @@ namespace BracketToMe
 
 		private void RunSimulationClick(object sender, RoutedEventArgs e)
 		{
-			// TODO: Run the simulation.
+			Results.SimulateTournament();
 		}
 	}
 }
