@@ -21,6 +21,8 @@ namespace BracketToMe
 
 		public void Populate(TeamData data)
 		{
+			Results.Clear();
+
 			// Seed the initial team names. Fields are in the form: WestSeed1, etc.
 			for (int i = 0; i < 64; ++i)
 			{
@@ -77,46 +79,64 @@ namespace BracketToMe
 			return toReturn;
 		}
 
-		public void SimulateTournament()
+		// Run all the simulations up to the championship.
+		public void SimulateTournament(TeamData data)
 		{
-			// Run all the simulations up to the championship.
+			// For example, compare WestSeed1 and WestSeed16 and put the results in WestWinner1.
 			for (int i = 0; i < 126; i += 2)
 			{
-				// Compare WestSeed1 and WestSeed16, etc. Put results in WestWinner1, etc.
-				string fieldName1 = FieldNames[i];
-				string fieldName2 = FieldNames[i + 1];
-				Result result1 = LookUpResults(fieldName1);
-				Result result2 = LookUpResults(fieldName2);
-				Result finalResult = SimulateGame(result1, result2);
-				string finalField = LookUpWinner(fieldName1);
-				Results[finalField] = finalResult;
+				string team1FieldName = FieldNames[i];
+				string team2FieldName = FieldNames[i + 1];
+				string winnerFieldName = LookUpWinner(team1FieldName);
+				Result team1Result = Results[team1FieldName];
+				Result team2Result = Results[team2FieldName];
+				Result winnerResult = SimulateGame(ref team1Result, ref team2Result, data);
+				// NOTE: Scores are calculated and kept in the "previous" results.
+				Results[team1FieldName] = team1Result;
+				Results[team2FieldName] = team2Result;
+				Results[winnerFieldName] = winnerResult;
 			}
 
 			// Tell the UI our results have changed.
 			PropertyChanged.Invoke(this, new PropertyChangedEventArgs("LookUpResults"));
 		}
 
-		private Result SimulateGame(Result result1, Result result2)
+		// Run a simulation of one game and return the winner.
+		private Result SimulateGame(ref Result team1Result, ref Result team2Result, TeamData data)
 		{
-			// TODO: Calculate scores and winners. Just use the seed for now.
-			Result finalResult = new Result();
-			float team1Score = 0.0f;
-			team1Score = (17.0f - System.Math.Min(result1.Seed, 16.0f)) / 16.0f * 100.0f;
-			float team2Score = 0.0f;
-			team2Score = (17.0f - System.Math.Min(result2.Seed, 16.0f)) / 16.0f * 100.0f;
-			if (team1Score >= team2Score)
+			float team1Factor = 0.0f;
+			float team2Factor = 0.0f;
+			Team team1 = data.GetTeam(team1Result.Team);
+			Team team2 = data.GetTeam(team2Result.Team);
+
+			// Calculate an overall "factor" of which team would win.
+			team1Factor = (17.0f - System.Math.Min(team1Result.Seed, 16.0f)) / 16.0f * 100.0f;
+			team2Factor = (17.0f - System.Math.Min(team2Result.Seed, 16.0f)) / 16.0f * 100.0f;
+
+			// Calculate the final score of the game.
+			int team1Score = (int)System.Math.Round((team1.Ppg + team2.OppPgg) / 2.0f);
+			int team2Score = (int)System.Math.Round((team2.Ppg + team1.OppPgg) / 2.0f);
+
+			// Create new, updated Results to prevent binding cache issues.
+			team1Result = new Result
 			{
-				finalResult.Seed = result1.Seed;
-				finalResult.Team = result1.Team;
-				finalResult.Score = 0;
-			}
-			else
+				Seed = team1Result.Seed,
+				Team = team1Result.Team,
+				Score = team1Score
+			};
+			team2Result = new Result
 			{
-				finalResult.Seed = result2.Seed;
-				finalResult.Team = result2.Team;
-				finalResult.Score = 0;
-			}
-			return finalResult;
+				Seed = team2Result.Seed,
+				Team = team2Result.Team,
+				Score = team2Score
+			};
+			Result winnerResult = new Result
+			{
+				Seed = team1Factor >= team2Factor ? team1Result.Seed : team2Result.Seed,
+				Team = team1Factor >= team2Factor ? team1Result.Team : team2Result.Team,
+				Score = 0       // Will be calculated next round.
+			};
+			return winnerResult;
 		}
 
 		public Result LookUpResults(string fieldName)

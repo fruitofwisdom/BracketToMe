@@ -58,6 +58,22 @@ namespace BracketToMe
 	{
 		public List<Team> Teams = new List<Team>();
 
+		public Team GetTeam(string teamName)
+		{
+			Team toReturn = null;
+
+			foreach (Team team in Teams)
+			{
+				if (team.Name == teamName)
+				{
+					toReturn = team;
+					break;
+				}
+			}
+
+			return toReturn;
+		}
+
 		public async Task<bool> ReadFile(Windows.Storage.StorageFile file)
 		{
 			bool toReturn = false;
