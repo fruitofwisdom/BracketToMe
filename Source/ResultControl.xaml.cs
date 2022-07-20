@@ -50,6 +50,18 @@ namespace BracketToMe
 				{
 					scoreTextBlock.Text = control.Result.Score.ToString();
 				}
+				if (control.Result.Winner)
+				{
+					seedTextBlock.FontWeight = Windows.UI.Text.FontWeights.Bold;
+					teamTextBlock.FontWeight = Windows.UI.Text.FontWeights.Bold;
+					scoreTextBlock.FontWeight = Windows.UI.Text.FontWeights.Bold;
+				}
+				else
+				{
+					seedTextBlock.FontWeight = Windows.UI.Text.FontWeights.Normal;
+					teamTextBlock.FontWeight = Windows.UI.Text.FontWeights.Normal;
+					scoreTextBlock.FontWeight = Windows.UI.Text.FontWeights.Normal;
+				}
 			}
 		}
 	}

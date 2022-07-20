@@ -9,6 +9,7 @@ namespace BracketToMe
 		public int Seed;
 		public string Team;
 		public int Score;
+		public bool Winner;
 	}
 
 	public static class Weights
@@ -55,7 +56,8 @@ namespace BracketToMe
 				{
 					Seed = data.Teams[i].Seed,
 					Team = data.Teams[i].Name,
-					Score = 0
+					Score = 0,
+					Winner = false
 				};
 				Results.Add(fieldName, result);
 			}
@@ -201,19 +203,22 @@ namespace BracketToMe
 			{
 				Seed = team1Result.Seed,
 				Team = team1Result.Team,
-				Score = team1Score
+				Score = team1Score,
+				Winner = team1Score >= team2Score
 			};
 			team2Result = new Result
 			{
 				Seed = team2Result.Seed,
 				Team = team2Result.Team,
-				Score = team2Score
+				Score = team2Score,
+				Winner = team1Score < team2Score
 			};
 			Result winnerResult = new Result
 			{
 				Seed = team1Score >= team2Score ? team1Result.Seed : team2Result.Seed,
 				Team = team1Score >= team2Score ? team1Result.Team : team2Result.Team,
-				Score = 0       // Will be calculated next round.
+				Score = 0,		// Will be calculated next round.
+				Winner = false
 			};
 			return winnerResult;
 		}
