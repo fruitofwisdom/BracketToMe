@@ -1,7 +1,13 @@
 ﻿using System;
+using Windows.Foundation;
+using Windows.Storage;
+using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
+using Windows.UI.ViewManagement;
+using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Hosting;
 
 namespace BracketToMe
 {
@@ -10,36 +16,41 @@ namespace BracketToMe
 	/// </summary>
 	public sealed partial class MainPage : Page
 	{
+		private AppWindow AdjustWeightsWindow;
 		private TeamData Data = new TeamData();
 		public TournamentResults Results = new TournamentResults();
-		private Windows.UI.WindowManagement.AppWindow adjustWeightsWindow;
 
 		public MainPage()
 		{
 			this.InitializeComponent();
+
+			ApplicationView.PreferredLaunchViewSize = new Size(1250, 750);
+			ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 		}
 
 		private async void QuitClick(object sender, RoutedEventArgs e)
 		{
-			if (adjustWeightsWindow != null)
+			if (AdjustWeightsWindow != null)
 			{
-				await adjustWeightsWindow.CloseAsync();
+				await AdjustWeightsWindow.CloseAsync();
 			}
 			Application.Current.Exit();
 		}
 
 		private async void OpenTeamDataClick(object sender, RoutedEventArgs e)
 		{
-			FileOpenPicker picker = new FileOpenPicker();
-			picker.ViewMode = PickerViewMode.List;
-			picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+			FileOpenPicker picker = new FileOpenPicker
+			{
+				ViewMode = PickerViewMode.List,
+				SuggestedStartLocation = PickerLocationId.DocumentsLibrary
+			};
 			picker.FileTypeFilter.Add(".csv");
 
-			Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+			StorageFile file = await picker.PickSingleFileAsync();
 			if (file != null)
 			{
 				// Application now has read/write access to the picked file
-				Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(file);
+				StorageApplicationPermissions.FutureAccessList.Add(file);
 				await Data.ReadFile(file);
 
 				if (Data.Teams.Count > 0)
@@ -56,21 +67,21 @@ namespace BracketToMe
 
 		private async void AdjustWeightsClick(object sender, RoutedEventArgs e)
 		{
-			adjustWeightsWindow = await Windows.UI.WindowManagement.AppWindow.TryCreateAsync();
+			AdjustWeightsWindow = await AppWindow.TryCreateAsync();
 
 			Frame adjustWeightsFrame = new Frame();
 			adjustWeightsFrame.Navigate(typeof(AdjustWeightsPage), this);
 
-			Windows.UI.Xaml.Hosting.ElementCompositionPreview.SetAppWindowContent(adjustWeightsWindow, adjustWeightsFrame);
+			ElementCompositionPreview.SetAppWindowContent(AdjustWeightsWindow, adjustWeightsFrame);
 
-			adjustWeightsWindow.RequestSize(new Windows.Foundation.Size(500, 590));
-			adjustWeightsWindow.Closed += delegate
+			AdjustWeightsWindow.RequestSize(new Size(500, 590));
+			AdjustWeightsWindow.Closed += delegate
 			{
 				adjustWeightsFrame.Content = null;
-				adjustWeightsWindow = null;
+				AdjustWeightsWindow = null;
 			};
 
-			await adjustWeightsWindow.TryShowAsync();
+			await AdjustWeightsWindow.TryShowAsync();
 		}
 
 		public void SimulateTournament()
