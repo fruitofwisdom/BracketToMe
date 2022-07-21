@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="BracketToMe.AdjustWeightsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BracketToMe"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Canvas Width="500" Height="590">
+            <TextBlock Canvas.Left="10" Canvas.Top="17" Text="Points-Per-Game Weight" Width="175" Height="20"/>
+            <Slider x:Name="PpgWeightSlider" Canvas.Left="185" Canvas.Top="10" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.PpgWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="17" Text="{x:Bind Path=PpgWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="47" Text="Calculated Weight" Width="175" Height="20"/>
+            <Slider x:Name="CalculatedWeightSlider" Canvas.Left="185" Canvas.Top="40" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.CalculatedWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="47" Text="{x:Bind Path=CalculatedWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="77" Text="Seed Weight" Width="175" Height="20"/>
+            <Slider x:Name="SeedWeightSlider" Canvas.Left="185" Canvas.Top="70" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.SeedWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="77" Text="{x:Bind Path=SeedWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="107" Text="BPI Rank Weight" Width="175" Height="20"/>
+            <Slider x:Name="BpiRankWeightSlider" Canvas.Left="185" Canvas.Top="100" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiRankWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="107" Text="{x:Bind Path=BpiRankWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="137" Text="BPI Offensive Weight" Width="175" Height="20"/>
+            <Slider x:Name="BpiOffWeightSlider" Canvas.Left="185" Canvas.Top="130" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiOffWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="137" Text="{x:Bind Path=BpiOffWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="167" Text="BPI Defensive Weight" Width="175" Height="20"/>
+            <Slider x:Name="BpiDefWeightSlider" Canvas.Left="185" Canvas.Top="160" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiDefWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="167" Text="{x:Bind Path=BpiDefWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="197" Text="Record Weight" Width="175" Height="20"/>
+            <Slider x:Name="RecordWeightSlider" Canvas.Left="185" Canvas.Top="190" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.RecordWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="197" Text="{x:Bind Path=RecordWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="227" Text="Conference Weight" Width="175" Height="20"/>
+            <Slider x:Name="ConferenceWeightSlider" Canvas.Left="185" Canvas.Top="220" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.ConferenceWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="227" Text="{x:Bind Path=ConferenceWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="257" Text="Vs Top 25 Teams Weight" Width="175" Height="20"/>
+            <Slider x:Name="VsTop25WeightSlider" Canvas.Left="185" Canvas.Top="250" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.VsTop25Weight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="257" Text="{x:Bind Path=VsTop25WeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="287" Text="Last 10 Games Weight" Width="175" Height="20"/>
+            <Slider x:Name="Last10WeightSlider" Canvas.Left="185" Canvas.Top="280" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.Last10Weight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="287" Text="{x:Bind Path=Last10WeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="317" Text="SOS Weight" Width="175" Height="20"/>
+            <Slider x:Name="SosWeightSlider" Canvas.Left="185" Canvas.Top="310" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.SosRankWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="317" Text="{x:Bind Path=SosWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="347" Text="SOR Weight" Width="175" Height="20"/>
+            <Slider x:Name="SorWeightSlider" Canvas.Left="185" Canvas.Top="340" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.SorRankWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="347" Text="{x:Bind Path=SorWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="377" Text="BPI Factor Weight" Width="175" Height="20"/>
+            <Slider x:Name="BpiFactorWeightSlider" Canvas.Left="185" Canvas.Top="370" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiFactorWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="377" Text="{x:Bind Path=BpiFactorWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="407" Text="Record Factor Weight" Width="175" Height="20"/>
+            <Slider x:Name="RecordFactorWeightSlider" Canvas.Left="185" Canvas.Top="400" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.RecordFactorWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="407" Text="{x:Bind Path=RecordFactorWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="437" Text="Overall Factor Weight" Width="175" Height="20"/>
+            <Slider x:Name="OverallFactorWeightSlider" Canvas.Left="185" Canvas.Top="430" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.OverallFactorWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="437" Text="{x:Bind Path=OverallFactorWeightSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="467" Text="Field Goal Attempts" Width="175" Height="20"/>
+            <Slider x:Name="FieldGoalAttemptsSlider" Canvas.Left="185" Canvas.Top="460" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.FieldGoalAttempts}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="467" Text="{x:Bind Path=FieldGoalAttemptsSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="497" Text="Three Point Attempts" Width="175" Height="20"/>
+            <Slider x:Name="ThreePointAttemptsSlider" Canvas.Left="185" Canvas.Top="490" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.ThreePointAttempts}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="497" Text="{x:Bind Path=ThreePointAttemptsSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="527" Text="Free Throw Attempts" Width="175" Height="20"/>
+            <Slider x:Name="FreeThrowAttemptsSlider" Canvas.Left="185" Canvas.Top="520" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.FreeThrowAttempts}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="527" Text="{x:Bind Path=FreeThrowAttemptsSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="557" Text="Other Points" Width="175" Height="20"/>
+            <Slider x:Name="OtherPointsSlider" Canvas.Left="185" Canvas.Top="550" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.OtherPoints}" Minimum="0" Maximum="50" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
+            <TextBlock Canvas.Left="410" Canvas.Top="557" Text="{x:Bind Path=OtherPointsSlider.Value, Mode=OneWay}" Width="75" Height="20"/>
+        </Canvas>
+    </ScrollViewer>
+</Page>

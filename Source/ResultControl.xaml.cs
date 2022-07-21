@@ -10,7 +10,7 @@ namespace BracketToMe
 	public sealed partial class ResultControl : UserControl
 	{
 		public static readonly DependencyProperty ResultProperty =
-			DependencyProperty.Register("ResultProperty", typeof(Result), typeof(ResultControl),
+			DependencyProperty.Register("Result", typeof(Result), typeof(ResultControl),
 			new PropertyMetadata(null, new PropertyChangedCallback(OnResultChanged)));
 		public Result Result
 		{

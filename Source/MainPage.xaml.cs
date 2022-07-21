@@ -12,14 +12,19 @@ namespace BracketToMe
 	{
 		private TeamData Data = new TeamData();
 		public TournamentResults Results = new TournamentResults();
+		private Windows.UI.WindowManagement.AppWindow adjustWeightsWindow;
 
 		public MainPage()
 		{
 			this.InitializeComponent();
 		}
 
-		private void QuitClick(object sender, RoutedEventArgs e)
+		private async void QuitClick(object sender, RoutedEventArgs e)
 		{
+			if (adjustWeightsWindow != null)
+			{
+				await adjustWeightsWindow.CloseAsync();
+			}
 			Application.Current.Exit();
 		}
 
@@ -40,9 +45,7 @@ namespace BracketToMe
 				if (Data.Teams.Count > 0)
 				{
 					Results.Populate(Data);
-
-					MenuFlyoutItem runSimulationMenuItem = FindName("RunSimulationMenuItem") as MenuFlyoutItem;
-					runSimulationMenuItem.IsEnabled = true;
+					SimulateTournament();
 				}
 			}
 			else
@@ -51,9 +54,31 @@ namespace BracketToMe
 			}
 		}
 
-		private void RunSimulationClick(object sender, RoutedEventArgs e)
+		private async void AdjustWeightsClick(object sender, RoutedEventArgs e)
 		{
-			Results.SimulateTournament(Data);
+			adjustWeightsWindow = await Windows.UI.WindowManagement.AppWindow.TryCreateAsync();
+
+			Frame adjustWeightsFrame = new Frame();
+			adjustWeightsFrame.Navigate(typeof(AdjustWeightsPage), this);
+
+			Windows.UI.Xaml.Hosting.ElementCompositionPreview.SetAppWindowContent(adjustWeightsWindow, adjustWeightsFrame);
+
+			adjustWeightsWindow.RequestSize(new Windows.Foundation.Size(500, 590));
+			adjustWeightsWindow.Closed += delegate
+			{
+				adjustWeightsFrame.Content = null;
+				adjustWeightsWindow = null;
+			};
+
+			await adjustWeightsWindow.TryShowAsync();
+		}
+
+		public void SimulateTournament()
+		{
+			if (Results.Results.Count > 0)
+			{
+				Results.SimulateTournament(Data);
+			}
 		}
 	}
 }

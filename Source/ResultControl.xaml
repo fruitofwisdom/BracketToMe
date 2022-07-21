@@ -13,6 +13,6 @@
         <Rectangle HorizontalAlignment="Left" Height="25" Stroke="Black" VerticalAlignment="Top" Width="125" Fill="White"/>
         <TextBlock x:Name="SeedText" HorizontalAlignment="Left" Margin="5,7,0,0" Text="Seed" VerticalAlignment="Top" Width="15" FontSize="10"/>
         <TextBlock x:Name="TeamText" HorizontalAlignment="Left" Margin="20,0,0,0" Text="Result" VerticalAlignment="Center" Width="70"/>
-        <TextBlock x:Name="ScoreText" HorizontalAlignment="Left" Margin="100,0,0,0" Text="Score" VerticalAlignment="Center" Width="25"/>
+        <TextBlock x:Name="ScoreText" HorizontalAlignment="Left" Margin="95,0,0,0" Text="Score" VerticalAlignment="Center" Width="30"/>
     </Grid>
 </UserControl>
