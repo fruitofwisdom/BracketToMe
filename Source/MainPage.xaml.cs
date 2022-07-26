@@ -74,7 +74,7 @@ namespace BracketToMe
 
 			ElementCompositionPreview.SetAppWindowContent(AdjustWeightsWindow, adjustWeightsFrame);
 
-			AdjustWeightsWindow.RequestSize(new Size(500, 590));
+			AdjustWeightsWindow.RequestSize(new Size(500, 1090));
 			AdjustWeightsWindow.Closed += delegate
 			{
 				adjustWeightsFrame.Content = null;

@@ -1,5 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -33,6 +35,20 @@ namespace BracketToMe
 			{
 				MainPage.SimulateTournament();
 			}
+		}
+	}
+
+	// Convert a double to a string (and back) with the formatting we desire.
+	public class WeightFormatConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, string language)
+		{
+			return String.Format("{0:N2}", value);
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, string language)
+		{
+			return Double.Parse((string)value);
 		}
 	}
 }
