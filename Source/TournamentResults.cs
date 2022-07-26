@@ -14,27 +14,34 @@ namespace BracketToMe
 
 	public static class Weights
 	{
+		// When calculating a score, how much should each be weighted?
 		public static float PpgWeight = 0.5f;
 		public static float CalculatedWeight = 0.5f;
+		// For the BPI factor, how much should each be weighted?
 		public static float SeedWeight = 0.25f;
 		public static float BpiRankWeight = 0.25f;
 		public static float BpiOffWeight = 0.3f;
 		public static float BpiDefWeight = 0.2f;
+		// For the record factor, how much should each be weighted?
 		public static float RecordWeight = 0.3f;
 		public static float ConferenceWeight = 0.2f;
 		public static float VsTop25Weight = 0.05f;
 		public static float Last10Weight = 0.15f;
 		public static float SosRankWeight = 0.1f;
 		public static float SorRankWeight = 0.2f;
+		// How much should the BPI and record factor into a team's performance?
 		public static float BpiFactorWeight = 0.6f;
 		public static float RecordFactorWeight = 0.4f;
+		// How much should these weights affect a team's calculated score?
 		public static float OverallFactorWeight = 0.1f;
-		public static int FieldGoalAttempts = 60;
+		// How many attempts of each type per game should be considered?
+		public static int FieldGoalAttempts = 50;
 		public static int ThreePointAttempts = 20;
 		public static int FreeThrowAttempts = 20;
 		public static int OtherPoints = 25;
 	}
 
+	// The results of the tournament and how to simulate it.
 	public class TournamentResults : INotifyPropertyChanged
 	{
 		// ResultControls will bind into this dictionary, one for each seed and winner, etc. See
@@ -48,7 +55,7 @@ namespace BracketToMe
 		{
 			Results.Clear();
 
-			// Seed the initial team names. Fields are in the form: WestSeed1, etc.
+			// Seed the initial team names.
 			for (int i = 0; i < 64; ++i)
 			{
 				string fieldName = FieldNames[i];
@@ -66,6 +73,8 @@ namespace BracketToMe
 			PropertyChanged.Invoke(this, new PropertyChangedEventArgs("LookUpResults"));
 		}
 
+		// Based on a given field, look up what the winner's field should be. For example,
+		// WestSeed1 would return WestWinner1, WestWinner1 would return WestSweetSixteen1, etc.
 		private string LookUpWinner(string fieldName1)
 		{
 			string toReturn = "Unknown";
@@ -197,6 +206,19 @@ namespace BracketToMe
 			int team2Score = (int)Math.Round(
 				team2PpgScore * Weights.PpgWeight +
 				team2CalculatedPoints * Weights.CalculatedWeight);
+
+			// Ties aren't allowed, so prefer the team with the higher weighted factor.
+			if (team1Score == team2Score)
+			{
+				if (team1WeightedFactor > team2WeightedFactor)
+				{
+					team1Score++;
+				}
+				else
+				{
+					team2Score++;
+				}
+			}
 
 			// Create new, updated Results to prevent binding cache issues.
 			team1Result = new Result

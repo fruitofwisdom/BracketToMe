@@ -11,9 +11,7 @@ using Windows.UI.Xaml.Hosting;
 
 namespace BracketToMe
 {
-	/// <summary>
-	/// The main page for tournament results and interacting with the simulation.
-	/// </summary>
+	// The main page for tournament results and interacting with the simulation.
 	public sealed partial class MainPage : Page
 	{
 		private AppWindow AdjustWeightsWindow;
@@ -24,6 +22,7 @@ namespace BracketToMe
 		{
 			this.InitializeComponent();
 
+			// Attempt to set a preferred size for ourselves.
 			ApplicationView.PreferredLaunchViewSize = new Size(1250, 750);
 			ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 		}
@@ -49,7 +48,6 @@ namespace BracketToMe
 			StorageFile file = await picker.PickSingleFileAsync();
 			if (file != null)
 			{
-				// Application now has read/write access to the picked file
 				StorageApplicationPermissions.FutureAccessList.Add(file);
 				await Data.ReadFile(file);
 
@@ -61,7 +59,7 @@ namespace BracketToMe
 			}
 			else
 			{
-				// Do something else
+				// Do something else?
 			}
 		}
 
@@ -74,7 +72,8 @@ namespace BracketToMe
 
 			ElementCompositionPreview.SetAppWindowContent(AdjustWeightsWindow, adjustWeightsFrame);
 
-			AdjustWeightsWindow.RequestSize(new Size(500, 1090));
+			// Attempt to size the window to the actual canvas size.
+			AdjustWeightsWindow.RequestSize(new Size(500, 1155));
 			AdjustWeightsWindow.Closed += delegate
 			{
 				adjustWeightsFrame.Content = null;
