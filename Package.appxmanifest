@@ -9,13 +9,13 @@
   <Identity
     Name="26e0bc18-236b-4121-a032-f0dacf7dafb4"
     Publisher="CN=wardc"
-    Version="0.1.0.0" />
+    Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="26e0bc18-236b-4121-a032-f0dacf7dafb4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Bracket To Me</DisplayName>
-    <PublisherDisplayName>wardc</PublisherDisplayName>
+    <PublisherDisplayName>https://github.com/fruitofwisdom</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
