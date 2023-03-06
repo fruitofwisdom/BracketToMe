@@ -76,8 +76,6 @@ namespace BracketToMe
 
 		public async Task<bool> ReadFile(Windows.Storage.StorageFile file)
 		{
-			bool toReturn = false;
-
 			IList<string> lines = await Windows.Storage.FileIO.ReadLinesAsync(file);
 			foreach (string line in lines)
 			{
@@ -85,8 +83,7 @@ namespace BracketToMe
 				Teams.Add(new Team(fields));
 			}
 
-			toReturn = true;
-			return toReturn;
+			return true;
 		}
 	}
 }
