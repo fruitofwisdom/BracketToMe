@@ -26,10 +26,11 @@ namespace BracketToMe
 		// How much should these weights affect a team's calculated score?
 		public static float OverallFactorWeight = 0.1f;
 		// How many attempts of each type per game should be considered?
-		public static int FieldGoalAttempts = 50;
-		public static int ThreePointAttempts = 20;
+		// NOTE: NCAA standard has been 50% of all points from field goals, 30% three-pointers,
+		// and 20% free throws. These values give roughly that approximation.
+		public static int FieldGoalAttempts = 37;
+		public static int ThreePointAttempts = 22;
 		public static int FreeThrowAttempts = 20;
-		public static int OtherPoints = 25;
 	}
 
 	public class TournamentMath
@@ -100,24 +101,34 @@ namespace BracketToMe
 
 		private static (int, int) CalculateScore(Team team1, Team team2, float team1WeightedFactor, float team2WeightedFactor)
 		{
+			// We'll use two methods to predict the score of a game. First, a simple average
+			// between one team's points-per-game and the other team's opposing points-per-game.
 			float team1PpgScore = (team1.Ppg + team2.OppPgg) / 2.0f;
 			float team2PpgScore = (team2.Ppg + team1.OppPgg) / 2.0f;
-			float team1CalculatedPoints =
-				(Weights.FieldGoalAttempts * team1.FieldGoalPer * team1WeightedFactor / 100.0f) +
-				(Weights.ThreePointAttempts * team1.ThreePointPer * team1WeightedFactor / 100.0f) +
-				(Weights.FreeThrowAttempts * team1.FreeThrowPer * team1WeightedFactor / 100.0f) +
-				Weights.OtherPoints;
-			float team2CalculatedPoints =
-				(Weights.FieldGoalAttempts * team2.FieldGoalPer * team2WeightedFactor / 100.0f) +
-				(Weights.ThreePointAttempts * team2.ThreePointPer * team2WeightedFactor / 100.0f) +
-				(Weights.FreeThrowAttempts * team2.FreeThrowPer * team2WeightedFactor / 100.0f) +
-				Weights.OtherPoints;
-			int team1Score = (int)Math.Round(
+
+			// Second, we'll calculate each team's score based on predicted successful field goal,
+			// three-point, and free throw attempts.
+			float team1FieldGoalPoints = Weights.FieldGoalAttempts * (team1.FieldGoalPer / 100.0f) * 2.0f;
+			float team1ThreePointPoints = Weights.ThreePointAttempts * (team1.ThreePointPer / 100.0f) * 3.0f;
+			float team1FreeThrowPoints = Weights.FreeThrowAttempts * (team1.FreeThrowPer / 100.0f);
+			float team1CalculatedPoints = team1FieldGoalPoints + team1ThreePointPoints + team1FreeThrowPoints;
+			float team2FieldGoalPoints = Weights.FieldGoalAttempts * (team2.FieldGoalPer / 100.0f) * 2.0f;
+			float team2ThreePointPoints = Weights.ThreePointAttempts * (team2.ThreePointPer / 100.0f) * 3.0f;
+			float team2FreeThrowPoints = Weights.FreeThrowAttempts * (team2.FreeThrowPer / 100.0f);
+			float team2CalculatedPoints = team2FieldGoalPoints + team2ThreePointPoints + team2FreeThrowPoints;
+
+			// Then we'll average the two based on their respective weights.
+			float team1BlendedScore =
 				team1PpgScore * Weights.PpgWeight +
-				team1CalculatedPoints * Weights.CalculatedWeight);
-			int team2Score = (int)Math.Round(
+				team1CalculatedPoints * Weights.CalculatedWeight;
+			float team2BlendedScore =
 				team2PpgScore * Weights.PpgWeight +
-				team2CalculatedPoints * Weights.CalculatedWeight);
+				team2CalculatedPoints * Weights.CalculatedWeight;
+
+			// Lastly, we'll scale the scores based on the relative strength of the teams.
+			int team1Score = (int)Math.Round(team1BlendedScore * team1WeightedFactor);
+			int team2Score = (int)Math.Round(team2BlendedScore * team2WeightedFactor);
+
 			return (team1Score, team2Score);
 		}
 	}

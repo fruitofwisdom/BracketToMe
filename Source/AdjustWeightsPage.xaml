@@ -13,7 +13,7 @@
     </Page.Resources>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Canvas Width="500" Height="1155">
+        <Canvas Width="500" Height="1095">
             <TextBlock Canvas.Left="10" Canvas.Top="7" Text="When calculating a score, how much should prior PPG be weighted?"/>
             <TextBlock Canvas.Left="10" Canvas.Top="37" Text="Points-Per-Game Weight" Width="175" Height="20"/>
             <Slider x:Name="PpgWeightSlider" Canvas.Left="185" Canvas.Top="32" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.PpgWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
@@ -103,11 +103,6 @@
             <TextBlock Canvas.Left="10" Canvas.Top="1057" Text="Free Throw Attempts" Width="175" Height="20"/>
             <Slider x:Name="FreeThrowAttemptsSlider" Canvas.Left="185" Canvas.Top="1052" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.FreeThrowAttempts}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
             <TextBox Canvas.Left="410" Canvas.Top="1052" Text="{x:Bind Mode=TwoWay, Path=FreeThrowAttemptsSlider.Value}" Width="75"/>
-            
-			<TextBlock Canvas.Left="10" Canvas.Top="1087" Text="How many other points should be considered?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="1117" Text="Other Points" Width="175" Height="20"/>
-            <Slider x:Name="OtherPointsSlider" Canvas.Left="185" Canvas.Top="1112" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.OtherPoints}" Minimum="0" Maximum="50" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="1112" Text="{x:Bind Mode=TwoWay, Path=OtherPointsSlider.Value}" Width="75"/>
         </Canvas>
     </ScrollViewer>
 </Page>
