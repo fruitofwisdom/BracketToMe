@@ -34,7 +34,7 @@ namespace BracketToMe
 
 	public class TournamentMath
 	{
-		public static void SimulateGame(Team team1, Team team2, out int team1Score, out int team2Score)
+		public static (int team1Score, int team2Score) SimulateGame(Team team1, Team team2)
 		{
 			// Calculate various "factors" to predict a team's performance. A team's BPI factor is
 			// a combination of its conference seed, its BPI rank, and its component BPI offensive
@@ -60,24 +60,7 @@ namespace BracketToMe
 			// per-game combined with opposing-points-per-game and a calculated score based on
 			// shots attempted and performance-weighted historic percentages.  The team with the
 			// highest score is, of course, the winner for the simulation.
-			float team1PpgScore = (team1.Ppg + team2.OppPgg) / 2.0f;
-			float team2PpgScore = (team2.Ppg + team1.OppPgg) / 2.0f;
-			float team1CalculatedPoints =
-				(Weights.FieldGoalAttempts * team1.FieldGoalPer * team1WeightedFactor / 100.0f) +
-				(Weights.ThreePointAttempts * team1.ThreePointPer * team1WeightedFactor / 100.0f) +
-				(Weights.FreeThrowAttempts * team1.FreeThrowPer * team1WeightedFactor / 100.0f) +
-				Weights.OtherPoints;
-			float team2CalculatedPoints =
-				(Weights.FieldGoalAttempts * team2.FieldGoalPer * team2WeightedFactor / 100.0f) +
-				(Weights.ThreePointAttempts * team2.ThreePointPer * team2WeightedFactor / 100.0f) +
-				(Weights.FreeThrowAttempts * team2.FreeThrowPer * team2WeightedFactor / 100.0f) +
-				Weights.OtherPoints;
-			team1Score = (int)Math.Round(
-				team1PpgScore * Weights.PpgWeight +
-				team1CalculatedPoints * Weights.CalculatedWeight);
-			team2Score = (int)Math.Round(
-				team2PpgScore * Weights.PpgWeight +
-				team2CalculatedPoints * Weights.CalculatedWeight);
+			(int team1Score, int team2Score) = CalculateScore(team1, team2, team1WeightedFactor, team2WeightedFactor);
 
 			// Ties aren't allowed, so prefer the team with the higher weighted factor.
 			if (team1Score == team2Score)
@@ -91,6 +74,8 @@ namespace BracketToMe
 					team2Score++;
 				}
 			}
+
+			return (team1Score, team2Score);
 		}
 
 		private static float CalculateBpiFactor(Team team)
@@ -111,6 +96,29 @@ namespace BracketToMe
 				Math.Max(Math.Min(team.Last10W - team.Last10L / 2.0f, 7.0f), 0.0f) / 7.0f * 100.0f * Weights.Last10Weight +
 				(251.0f - Math.Min(team.SosRank, 250.0f)) / 250.0f * 50.0f * Weights.SosRankWeight +
 				(251.0f - Math.Min(team.SorRank, 250.0f)) / 250.0f * 50.0f * Weights.SorRankWeight;
+		}
+
+		private static (int, int) CalculateScore(Team team1, Team team2, float team1WeightedFactor, float team2WeightedFactor)
+		{
+			float team1PpgScore = (team1.Ppg + team2.OppPgg) / 2.0f;
+			float team2PpgScore = (team2.Ppg + team1.OppPgg) / 2.0f;
+			float team1CalculatedPoints =
+				(Weights.FieldGoalAttempts * team1.FieldGoalPer * team1WeightedFactor / 100.0f) +
+				(Weights.ThreePointAttempts * team1.ThreePointPer * team1WeightedFactor / 100.0f) +
+				(Weights.FreeThrowAttempts * team1.FreeThrowPer * team1WeightedFactor / 100.0f) +
+				Weights.OtherPoints;
+			float team2CalculatedPoints =
+				(Weights.FieldGoalAttempts * team2.FieldGoalPer * team2WeightedFactor / 100.0f) +
+				(Weights.ThreePointAttempts * team2.ThreePointPer * team2WeightedFactor / 100.0f) +
+				(Weights.FreeThrowAttempts * team2.FreeThrowPer * team2WeightedFactor / 100.0f) +
+				Weights.OtherPoints;
+			int team1Score = (int)Math.Round(
+				team1PpgScore * Weights.PpgWeight +
+				team1CalculatedPoints * Weights.CalculatedWeight);
+			int team2Score = (int)Math.Round(
+				team2PpgScore * Weights.PpgWeight +
+				team2CalculatedPoints * Weights.CalculatedWeight);
+			return (team1Score, team2Score);
 		}
 	}
 }

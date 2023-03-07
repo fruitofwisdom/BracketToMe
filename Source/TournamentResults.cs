@@ -121,7 +121,7 @@ namespace BracketToMe
 			Team team2 = data.GetTeam(team2Result.Team);
 
 			// Run the math between two teams and receive out the scores of each team.
-			TournamentMath.SimulateGame(team1, team2, out int team1Score, out int team2Score);
+			(int team1Score, int team2Score) = TournamentMath.SimulateGame(team1, team2);
 
 			// Create new, updated Results to prevent binding cache issues.
 			team1Result = new Result
