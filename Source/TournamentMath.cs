@@ -40,12 +40,12 @@ namespace BracketToMe
 		public static (int team1Score, int team2Score) SimulateGame(Team team1, Team team2)
 		{
 			// Calculate various "factors" to predict a team's performance. A team's BPI factor is
-			// a combination of its conference seed, its BPI rank, and its component BPI offensive
-			// and defensive score. A team's record factor is a combination of its total win/loss
-			// record, its conference record, its record against top-25 teams, its record from its
-			// last ten games, its strength-of-schedule rank, and its strength-of-record rank.
-			// These are combined into a +/- effect on their performance when calculating a
-			// predicted game score below.
+			// a combination of its conference seed and its component BPI offensive and defensive
+			// score. A team's record factor is a combination of its total win/loss record, its
+			// conference record, its record against top-25 teams, its record from its last ten
+			// games, its Strength of Schedule rank, and its Strength of Record rank. These are
+			// combined into a +/- effect on their performance when calculating a predicted game
+			// score below.
 			float team1BpiFactor = CalculateBpiFactor(team1);
 			float team2BpiFactor = CalculateBpiFactor(team2);
 			float team1RecordFactor = CalculateRecordFactor(team1);
@@ -66,7 +66,7 @@ namespace BracketToMe
 				1.0f + (team2BlendedFactor - team1BlendedFactor) / 100.0f * Weights.OverallFactorWeight;
 
 			// Calculate the final score of the game. This is a combination of historic points-
-			// per-game combined with opposing-points-per-game and a calculated score based on
+			// per-game combined with opposing points-per-game and a calculated score based on
 			// shots attempted and performance-weighted historic percentages.  The team with the
 			// highest score is, of course, the winner for the simulation.
 			(int team1Score, int team2Score) = CalculateScore(team1, team2, team1WeightedFactor, team2WeightedFactor);

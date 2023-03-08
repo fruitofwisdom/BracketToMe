@@ -6,34 +6,36 @@ namespace BracketToMe
 {
 	public class Team
 	{
-		public int Id;
-		public string Name;
-		public int Seed;
-		public int BpiRank;
-		public float BpiOff;
-		public float BpiDef;
-		public int RecordW;
-		public int RecordL;
-		public int ConferenceW;
-		public int ConferenceL;
-		public int VsTop25W;
-		public int VsTop25L;
-		public int Last10W;
-		public int Last10L;
-		public int SosRank;
-		public int SorRank;
-		public float Ppg;
-		public float OppPgg;
-		public float FieldGoalPer;
-		public float ThreePointPer;
-		public float FreeThrowPer;
+		public int Id;					// A unique ID.
+		public string Name;				// The team's name.
+
+		public int Seed;				// The team's tournament seed.
+		public float BpiOff;			// The team's BPI offensive strength.
+		public float BpiDef;			// The team's BPI defensive strength.
+
+		public int RecordW;				// The number of wins in their overall record.
+		public int RecordL;				// The number of losses in their overall record.
+		public int ConferenceW;			// The team's number of conference wins.
+		public int ConferenceL;			// The team's number of conference losses.
+		public int VsTop25W;			// Wins against top-25 ranked teams.
+		public int VsTop25L;			// Losses against top-25 ranked teams.
+		public int Last10W;				// Wins in the last 10 games.
+		public int Last10L;				// Losses in the last 10 games.
+		public int SosRank;				// The team's Strength of Schedule ranking.
+		public int SorRank;				// The team's Strength of Record ranking.
+
+		public float Ppg;				// The team's average points-per-game.
+		public float OppPgg;			// Their opposing team's average points-per-game.
+		public float FieldGoalPer;		// field goal percentage
+		public float ThreePointPer;		// three-point percentage
+		public float FreeThrowPer;		// free throw percentage
 
 		public Team(string[] fields)
 		{
 			Id = fields[0] == "" ? 0 : int.Parse(fields[0]);
 			Name = fields[1].Trim();
 			Seed = fields[2] == "" ? 0 : int.Parse(fields[2]);
-			BpiRank = fields[3] == "" ? 0 : int.Parse(fields[3]);
+			// BpiRank used to be field 3. Now ignored.
 			BpiOff = fields[4] == "" ? 0.0f : float.Parse(fields[4]);
 			BpiDef = fields[5] == "" ? 0.0f : float.Parse(fields[5]);
 			RecordW = fields[6] == "" ? 0 : int.Parse(fields[6]);
@@ -80,7 +82,10 @@ namespace BracketToMe
 			foreach (string line in lines)
 			{
 				string[] fields = line.Split(',');
-				Teams.Add(new Team(fields));
+				if (fields.Length > 0 && char.IsDigit(fields[0][0]))
+				{
+					Teams.Add(new Team(fields));
+				}
 			}
 
 			return true;
