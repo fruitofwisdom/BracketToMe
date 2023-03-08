@@ -13,7 +13,7 @@
     </Page.Resources>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Canvas Width="500" Height="1095">
+        <Canvas Width="500" Height="1035">
             <TextBlock Canvas.Left="10" Canvas.Top="7" Text="When calculating a score, how much should prior PPG be weighted?"/>
             <TextBlock Canvas.Left="10" Canvas.Top="37" Text="Points-Per-Game Weight" Width="175" Height="20"/>
             <Slider x:Name="PpgWeightSlider" Canvas.Left="185" Canvas.Top="32" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.PpgWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
@@ -28,81 +28,76 @@
             <TextBlock Canvas.Left="10" Canvas.Top="157" Text="Seed Weight" Width="175" Height="20"/>
             <Slider x:Name="SeedWeightSlider" Canvas.Left="185" Canvas.Top="152" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.SeedWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
             <TextBox Canvas.Left="410" Canvas.Top="152" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=SeedWeightSlider.Value}" Width="75"/>
-
-			<TextBlock Canvas.Left="10" Canvas.Top="187" Text="For the BPI factor, how much should the BPI rank be weighted?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="217" Text="BPI Rank Weight" Width="175" Height="20"/>
-            <Slider x:Name="BpiRankWeightSlider" Canvas.Left="185" Canvas.Top="212" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiRankWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="212" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=BpiRankWeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="247" Text="For the BPI factor, how much should BPI offense be weighted?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="277" Text="BPI Offensive Weight" Width="175" Height="20"/>
-            <Slider x:Name="BpiOffWeightSlider" Canvas.Left="185" Canvas.Top="272" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiOffWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="272" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=BpiOffWeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="187" Text="For the BPI factor, how much should BPI offense be weighted?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="217" Text="BPI Offensive Weight" Width="175" Height="20"/>
+            <Slider x:Name="BpiOffWeightSlider" Canvas.Left="185" Canvas.Top="212" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiOffWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="212" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=BpiOffWeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="307" Text="For the BPI factor, how much should BPI defense be weighted?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="337" Text="BPI Defensive Weight" Width="175" Height="20"/>
-            <Slider x:Name="BpiDefWeightSlider" Canvas.Left="185" Canvas.Top="332" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiDefWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="332" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=BpiDefWeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="247" Text="For the BPI factor, how much should BPI defense be weighted?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="277" Text="BPI Defensive Weight" Width="175" Height="20"/>
+            <Slider x:Name="BpiDefWeightSlider" Canvas.Left="185" Canvas.Top="272" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiDefWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="272" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=BpiDefWeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="367" Text="For the record factor, how much should the prior record be weighted?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="397" Text="Record Weight" Width="175" Height="20"/>
-            <Slider x:Name="RecordWeightSlider" Canvas.Left="185" Canvas.Top="392" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.RecordWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="392" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=RecordWeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="307" Text="For the record factor, how much should the prior record be weighted?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="337" Text="Record Weight" Width="175" Height="20"/>
+            <Slider x:Name="RecordWeightSlider" Canvas.Left="185" Canvas.Top="332" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.RecordWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="332" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=RecordWeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="427" Text="For the record factor, how much should the conference be weighted?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="457" Text="Conference Weight" Width="175" Height="20"/>
-            <Slider x:Name="ConferenceWeightSlider" Canvas.Left="185" Canvas.Top="452" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.ConferenceWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="452" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=ConferenceWeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="367" Text="For the record factor, how much should the conference be weighted?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="397" Text="Conference Weight" Width="175" Height="20"/>
+            <Slider x:Name="ConferenceWeightSlider" Canvas.Left="185" Canvas.Top="392" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.ConferenceWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="392" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=ConferenceWeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="487" Text="For the record factor, how much should vs top 25 teams be weighted?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="517" Text="Vs Top 25 Teams Weight" Width="175" Height="20"/>
-            <Slider x:Name="VsTop25WeightSlider" Canvas.Left="185" Canvas.Top="512" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.VsTop25Weight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="512" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=VsTop25WeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="427" Text="For the record factor, how much should vs top 25 teams be weighted?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="457" Text="Vs Top 25 Teams Weight" Width="175" Height="20"/>
+            <Slider x:Name="VsTop25WeightSlider" Canvas.Left="185" Canvas.Top="452" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.VsTop25Weight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="452" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=VsTop25WeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="547" Text="For the record factor, how much should the last 10 games be weighted?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="577" Text="Last 10 Games Weight" Width="175" Height="20"/>
-            <Slider x:Name="Last10WeightSlider" Canvas.Left="185" Canvas.Top="572" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.Last10Weight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="572" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=Last10WeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="487" Text="For the record factor, how much should the last 10 games be weighted?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="517" Text="Last 10 Games Weight" Width="175" Height="20"/>
+            <Slider x:Name="Last10WeightSlider" Canvas.Left="185" Canvas.Top="512" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.Last10Weight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="512" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=Last10WeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="607" Text="For the record factor, how much should strength of schedule be weighted?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="637" Text="SOS Weight" Width="175" Height="20"/>
-            <Slider x:Name="SosWeightSlider" Canvas.Left="185" Canvas.Top="632" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.SosRankWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="632" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=SosWeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="547" Text="For the record factor, how much should strength of schedule be weighted?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="577" Text="SOS Weight" Width="175" Height="20"/>
+            <Slider x:Name="SosWeightSlider" Canvas.Left="185" Canvas.Top="572" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.SosRankWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="572" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=SosWeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="667" Text="For the record factor, how much should strength of record be weighted?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="697" Text="SOR Weight" Width="175" Height="20"/>
-            <Slider x:Name="SorWeightSlider" Canvas.Left="185" Canvas.Top="692" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.SorRankWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="692" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=SorWeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="607" Text="For the record factor, how much should strength of record be weighted?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="637" Text="SOR Weight" Width="175" Height="20"/>
+            <Slider x:Name="SorWeightSlider" Canvas.Left="185" Canvas.Top="632" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.SorRankWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="632" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=SorWeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="727" Text="How much should the BPI weigh into a team's performance?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="757" Text="BPI Factor Weight" Width="175" Height="20"/>
-            <Slider x:Name="BpiFactorWeightSlider" Canvas.Left="185" Canvas.Top="752" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiFactorWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="752" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=BpiFactorWeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="667" Text="How much should the BPI weigh into a team's performance?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="697" Text="BPI Factor Weight" Width="175" Height="20"/>
+            <Slider x:Name="BpiFactorWeightSlider" Canvas.Left="185" Canvas.Top="692" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.BpiFactorWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="692" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=BpiFactorWeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="787" Text="How much should the record weigh into a team's performance?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="817" Text="Record Factor Weight" Width="175" Height="20"/>
-            <Slider x:Name="RecordFactorWeightSlider" Canvas.Left="185" Canvas.Top="812" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.RecordFactorWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="812" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=RecordFactorWeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="727" Text="How much should the record weigh into a team's performance?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="757" Text="Record Factor Weight" Width="175" Height="20"/>
+            <Slider x:Name="RecordFactorWeightSlider" Canvas.Left="185" Canvas.Top="752" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.RecordFactorWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="752" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=RecordFactorWeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="847" Text="How much should these weights affect a team's calculated score?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="877" Text="Overall Factor Weight" Width="175" Height="20"/>
-            <Slider x:Name="OverallFactorWeightSlider" Canvas.Left="185" Canvas.Top="872" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.OverallFactorWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="872" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=OverallFactorWeightSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="787" Text="How much should these weights affect a team's calculated score?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="817" Text="Overall Factor Weight" Width="175" Height="20"/>
+            <Slider x:Name="OverallFactorWeightSlider" Canvas.Left="185" Canvas.Top="812" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.OverallFactorWeight}" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.05" StepFrequency="0.05" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="812" Text="{x:Bind Converter={StaticResource WeightFormatConverter}, Mode=TwoWay, Path=OverallFactorWeightSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="907" Text="How many field goal attemps per game should be considered?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="937" Text="Field Goal Attempts" Width="175" Height="20"/>
-            <Slider x:Name="FieldGoalAttemptsSlider" Canvas.Left="185" Canvas.Top="932" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.FieldGoalAttempts}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="932" Text="{x:Bind Mode=TwoWay, Path=FieldGoalAttemptsSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="847" Text="How many field goal attemps per game should be considered?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="877" Text="Field Goal Attempts" Width="175" Height="20"/>
+            <Slider x:Name="FieldGoalAttemptsSlider" Canvas.Left="185" Canvas.Top="872" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.FieldGoalAttempts}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="872" Text="{x:Bind Mode=TwoWay, Path=FieldGoalAttemptsSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="967" Text="How many three point attempts per game should be considered?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="997" Text="Three Point Attempts" Width="175" Height="20"/>
-            <Slider x:Name="ThreePointAttemptsSlider" Canvas.Left="185" Canvas.Top="992" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.ThreePointAttempts}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="992" Text="{x:Bind Mode=TwoWay, Path=ThreePointAttemptsSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="907" Text="How many three point attempts per game should be considered?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="937" Text="Three Point Attempts" Width="175" Height="20"/>
+            <Slider x:Name="ThreePointAttemptsSlider" Canvas.Left="185" Canvas.Top="932" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.ThreePointAttempts}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="932" Text="{x:Bind Mode=TwoWay, Path=ThreePointAttemptsSlider.Value}" Width="75"/>
             
-			<TextBlock Canvas.Left="10" Canvas.Top="1027" Text="How many free throws per game should be considered?"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="1057" Text="Free Throw Attempts" Width="175" Height="20"/>
-            <Slider x:Name="FreeThrowAttemptsSlider" Canvas.Left="185" Canvas.Top="1052" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.FreeThrowAttempts}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
-            <TextBox Canvas.Left="410" Canvas.Top="1052" Text="{x:Bind Mode=TwoWay, Path=FreeThrowAttemptsSlider.Value}" Width="75"/>
+			<TextBlock Canvas.Left="10" Canvas.Top="967" Text="How many free throws per game should be considered?"/>
+            <TextBlock Canvas.Left="10" Canvas.Top="997" Text="Free Throw Attempts" Width="175" Height="20"/>
+            <Slider x:Name="FreeThrowAttemptsSlider" Canvas.Left="185" Canvas.Top="992" Width="200" Value="{x:Bind Mode=TwoWay, Path=local:Weights.FreeThrowAttempts}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="1" StepFrequency="1" ValueChanged="SliderValueChanged"/>
+            <TextBox Canvas.Left="410" Canvas.Top="992" Text="{x:Bind Mode=TwoWay, Path=FreeThrowAttemptsSlider.Value}" Width="75"/>
         </Canvas>
     </ScrollViewer>
 </Page>

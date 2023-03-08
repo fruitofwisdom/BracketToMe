@@ -6,25 +6,27 @@ namespace BracketToMe
 	public static class Weights
 	{
 		// When calculating a score, how much should each be weighted?
-		public static float PpgWeight = 0.5f;
-		public static float CalculatedWeight = 0.5f;
+		public static float PpgWeight = 0.7f;
+		public static float CalculatedWeight = 0.3f;
+
 		// For the BPI factor, how much should each be weighted?
-		public static float SeedWeight = 0.25f;
-		public static float BpiRankWeight = 0.25f;
-		public static float BpiOffWeight = 0.3f;
-		public static float BpiDefWeight = 0.2f;
+		public static float SeedWeight = 0.3f;
+		public static float BpiOffWeight = 0.35f;
+		public static float BpiDefWeight = 0.35f;
+
 		// For the record factor, how much should each be weighted?
-		public static float RecordWeight = 0.3f;
-		public static float ConferenceWeight = 0.2f;
-		public static float VsTop25Weight = 0.05f;
-		public static float Last10Weight = 0.15f;
+		public static float RecordWeight = 0.1f;
+		public static float ConferenceWeight = 0.1f;
+		public static float VsTop25Weight = 0.3f;
+		public static float Last10Weight = 0.3f;
 		public static float SosRankWeight = 0.1f;
-		public static float SorRankWeight = 0.2f;
+		public static float SorRankWeight = 0.1f;
+
 		// How much should the BPI and record factor into a team's performance?
-		public static float BpiFactorWeight = 0.6f;
-		public static float RecordFactorWeight = 0.4f;
-		// How much should these weights affect a team's calculated score?
-		public static float OverallFactorWeight = 0.1f;
+		public static float BpiFactorWeight = 0.3f;
+		public static float RecordFactorWeight = 0.7f;
+		public static float OverallFactorWeight = 0.15f;
+
 		// How many attempts of each type per game should be considered?
 		// NOTE: NCAA standard has been 50% of all points from field goals, 30% three-pointers,
 		// and 20% free throws. These values give roughly that approximation.
@@ -48,14 +50,20 @@ namespace BracketToMe
 			float team2BpiFactor = CalculateBpiFactor(team2);
 			float team1RecordFactor = CalculateRecordFactor(team1);
 			float team2RecordFactor = CalculateRecordFactor(team2);
+			float team1BlendedFactor =
+				team1BpiFactor * Weights.BpiFactorWeight +
+				team1RecordFactor * Weights.RecordFactorWeight;
+			float team2BlendedFactor =
+				team2BpiFactor * Weights.BpiFactorWeight +
+				team2RecordFactor * Weights.RecordFactorWeight;
+
+			// Calculate roughly how different in ability the teams are based on these factors to
+			// influence the difference in score when they play. This will range around 1.0f +/-
+			// the overall factor weight.
 			float team1WeightedFactor =
-				1.0f +
-				((team1BpiFactor * Weights.BpiFactorWeight + team1RecordFactor * Weights.RecordFactorWeight) * 2.0f - 100.0f) /
-				(100.0f / Weights.OverallFactorWeight);
+				1.0f + (team1BlendedFactor - team2BlendedFactor) / 100.0f * Weights.OverallFactorWeight;
 			float team2WeightedFactor =
-				1.0f +
-				((team2BpiFactor * Weights.BpiFactorWeight + team2RecordFactor * Weights.RecordFactorWeight) * 2.0f - 100.0f) /
-				(100.0f / Weights.OverallFactorWeight);
+				1.0f + (team2BlendedFactor - team1BlendedFactor) / 100.0f * Weights.OverallFactorWeight;
 
 			// Calculate the final score of the game. This is a combination of historic points-
 			// per-game combined with opposing-points-per-game and a calculated score based on
@@ -79,24 +87,51 @@ namespace BracketToMe
 			return (team1Score, team2Score);
 		}
 
+		private static float GetLinearResult(float value, float min, float max)
+		{
+			float step = 100.0f / (max - min);
+			float clampedValue = Math.Clamp(value, min, max);
+			float result = step * (clampedValue - min);
+			return result;
+		}
+
 		private static float CalculateBpiFactor(Team team)
 		{
-			return
-				(17.0f - Math.Min(team.Seed, 16.0f)) / 16.0f * 100.0f * Weights.SeedWeight +
-				(129.0f - Math.Min(team.BpiRank, 128.0f)) / 128.0f * 100.0f * Weights.BpiRankWeight +
-				Math.Max(Math.Min(team.BpiOff + 7.0f, 28.0f), 1.0f) / 28.0f * 100.0f * Weights.BpiOffWeight +
-				Math.Max(Math.Min(team.BpiDef + 7.0f, 28.0f), 1.0f) / 28.0f * 100.0f * Weights.BpiDefWeight;
+			// A 1-seed is 100%, a 16-seed is 0%.
+			float seedFactor = GetLinearResult(17 - team.Seed, 1.0f, 16.0f);
+			// A BPI offensive score of 12 or higher is 100%, -1 or lower is 0%.
+			float bpiOffFactor = GetLinearResult(team.BpiOff, -1.0f, 12.0f);
+			// A BPI defensive score of 10 or higher is 100%, -1 or lower is 0%.
+			float bpiDefFactor = GetLinearResult(team.BpiDef, -1.0f, 10.0f);
+			float bpiFactor =
+				seedFactor * Weights.SeedWeight +
+				bpiOffFactor * Weights.BpiOffWeight +
+				bpiDefFactor * Weights.BpiDefWeight;
+			return bpiFactor;
 		}
 
 		private static float CalculateRecordFactor(Team team)
 		{
-			return
-				Math.Max(Math.Min(team.RecordW - team.RecordL / 2.0f, 32.0f), 0.0f) / 32.0f * 100.0f * Weights.RecordWeight +
-				Math.Max(Math.Min(team.ConferenceW - team.ConferenceL / 2.0f, 18.0f), 0.0f) / 18.0f * 100.0f * Weights.ConferenceWeight +
-				Math.Max(Math.Min(team.VsTop25W - team.VsTop25L / 2.0f, 7.0f), 0.0f) / 7.0f * 100.0f * Weights.VsTop25Weight +
-				Math.Max(Math.Min(team.Last10W - team.Last10L / 2.0f, 7.0f), 0.0f) / 7.0f * 100.0f * Weights.Last10Weight +
-				(251.0f - Math.Min(team.SosRank, 250.0f)) / 250.0f * 50.0f * Weights.SosRankWeight +
-				(251.0f - Math.Min(team.SorRank, 250.0f)) / 250.0f * 50.0f * Weights.SorRankWeight;
+			// A record of total wins minus losses of 28 or higher is 100%, 8 or lower is 0%.
+			float recordWLFactor = GetLinearResult(team.RecordW - team.RecordL, 8.0f, 28.0f);
+			// A record of conference wins minus losses of 17 or higher is 100%, 0 or lower is 0%
+			float conferenceWLFactor = GetLinearResult(team.ConferenceW - team.ConferenceL, 0.0f, 17.0f);
+			// A record against top-25 teams of 3 or higher is 100%, -3 or lower is 0%
+			float vsTop25WLFactor = GetLinearResult(team.VsTop25W - team.VsTop25L, -3.0f, 3.0f);
+			// A record of the last 10 games of 10 is 100%, 0 is 0%.
+			float last10WLFactor = GetLinearResult(team.Last10W - team.Last10L, 0.0f, 10.0f);
+			// An SOS rank of 1 is 100%, 250 or higher is 0%.
+			float sosRankFactor = GetLinearResult(251 - team.SosRank, 1.0f, 250.0f);
+			// An SOR rank of 1 is 100%, 150 or higher is 0%.
+			float sorRankFactor = GetLinearResult(151 - team.SorRank, 1.0f, 150.0f);
+			float recordFactor =
+				recordWLFactor * Weights.RecordWeight +
+				conferenceWLFactor * Weights.ConferenceWeight +
+				vsTop25WLFactor * Weights.VsTop25Weight +
+				last10WLFactor * Weights.Last10Weight +
+				sosRankFactor * Weights.SosRankWeight +
+				sorRankFactor * Weights.SorRankWeight;
+			return recordFactor;
 		}
 
 		private static (int, int) CalculateScore(Team team1, Team team2, float team1WeightedFactor, float team2WeightedFactor)
