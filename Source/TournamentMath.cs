@@ -2,7 +2,7 @@
 
 namespace BracketToMe
 {
-
+	// TODO: Allow for the saving and loading of weights?
 	public static class Weights
 	{
 		// When calculating a score, how much should each be weighted?
@@ -67,7 +67,7 @@ namespace BracketToMe
 
 			// Calculate the final score of the game. This is a combination of historic points-
 			// per-game combined with opposing points-per-game and a calculated score based on
-			// shots attempted and performance-weighted historic percentages.  The team with the
+			// shots attempted and performance-weighted historic percentages. The team with the
 			// highest score is, of course, the winner for the simulation.
 			(int team1Score, int team2Score) = CalculateScore(team1, team2, team1WeightedFactor, team2WeightedFactor);
 
@@ -87,6 +87,7 @@ namespace BracketToMe
 			return (team1Score, team2Score);
 		}
 
+		// Scale a value to between [0.0f ... 100.0f] based on a relative min and max.
 		private static float GetLinearResult(float value, float min, float max)
 		{
 			float step = 100.0f / (max - min);
