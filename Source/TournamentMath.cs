@@ -15,12 +15,12 @@ namespace BracketToMe
 		public static float BpiDefWeight = 0.35f;
 
 		// For the record factor, how much should each be weighted?
-		public static float RecordWeight = 0.1f;
-		public static float ConferenceWeight = 0.1f;
-		public static float VsTop25Weight = 0.3f;
-		public static float Last10Weight = 0.3f;
+		public static float RecordWeight = 0.25f;
+		public static float ConferenceWeight = 0.25f;
+		public static float VsTop25Weight = 0.05f;
+		public static float Last10Weight = 0.15f;
 		public static float SosRankWeight = 0.1f;
-		public static float SorRankWeight = 0.1f;
+		public static float SorRankWeight = 0.2f;
 
 		// How much should the BPI and record factor into a team's performance?
 		public static float BpiFactorWeight = 0.3f;
