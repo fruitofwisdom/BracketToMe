@@ -18,6 +18,9 @@
                 <MenuFlyoutItem Text="Open Team Data..." Click="OpenTeamDataClick"/>
                 <MenuFlyoutItem Text="Adjust Weights..." Click="AdjustWeightsClick"/>
             </MenuBarItem>
+            <MenuBarItem Title="Help">
+                <MenuFlyoutItem Text="About Bracket To Me" Click="AboutClick" />
+            </MenuBarItem>
         </MenuBar>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" RelativePanel.Below="Menu">
             <Canvas Width="1250" Height="1600">

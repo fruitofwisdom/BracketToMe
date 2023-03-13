@@ -15,24 +15,21 @@ namespace BracketToMe
 	public sealed partial class MainPage : Page
 	{
 		private AppWindow AdjustWeightsWindow;
-		private TeamData Data = new TeamData();
+
+		private readonly TeamData Data = new TeamData();
 		public TournamentResults Results = new TournamentResults();
 
 		public MainPage()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 
 			// Attempt to set a preferred size for ourselves.
 			ApplicationView.PreferredLaunchViewSize = new Size(1250, 750);
 			ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 		}
 
-		private async void QuitClick(object sender, RoutedEventArgs e)
+		private void QuitClick(object sender, RoutedEventArgs e)
 		{
-			if (AdjustWeightsWindow != null)
-			{
-				await AdjustWeightsWindow.CloseAsync();
-			}
 			Application.Current.Exit();
 		}
 
@@ -65,20 +62,24 @@ namespace BracketToMe
 
 		private async void AdjustWeightsClick(object sender, RoutedEventArgs e)
 		{
-			AdjustWeightsWindow = await AppWindow.TryCreateAsync();
-
-			Frame adjustWeightsFrame = new Frame();
-			adjustWeightsFrame.Navigate(typeof(AdjustWeightsPage), this);
-
-			ElementCompositionPreview.SetAppWindowContent(AdjustWeightsWindow, adjustWeightsFrame);
-
-			// Attempt to size the window to the actual canvas size.
-			AdjustWeightsWindow.RequestSize(new Size(500, 1155));
-			AdjustWeightsWindow.Closed += delegate
+			// Only allow one adjust weights page at a time.
+			if (AdjustWeightsWindow == null)
 			{
-				adjustWeightsFrame.Content = null;
-				AdjustWeightsWindow = null;
-			};
+				AdjustWeightsWindow = await AppWindow.TryCreateAsync();
+
+				Frame adjustWeightsFrame = new Frame();
+				adjustWeightsFrame.Navigate(typeof(AdjustWeightsPage), this);
+				ElementCompositionPreview.SetAppWindowContent(AdjustWeightsWindow, adjustWeightsFrame);
+				
+				// Finish setting up the window.
+				AdjustWeightsWindow.RequestSize(new Size(500, 1185));
+				AdjustWeightsWindow.Title = "Adjust Weights";
+				AdjustWeightsWindow.Closed += delegate
+				{
+					adjustWeightsFrame.Content = null;
+					AdjustWeightsWindow = null;
+				};
+			}
 
 			await AdjustWeightsWindow.TryShowAsync();
 		}
@@ -89,6 +90,26 @@ namespace BracketToMe
 			{
 				Results.SimulateTournament(Data);
 			}
+		}
+
+		private async void AboutClick(object sender, RoutedEventArgs e)
+		{
+			AppWindow aboutPageWindow = await AppWindow.TryCreateAsync();
+
+			Frame aboutPageFrame = new Frame();
+			aboutPageFrame.Navigate(typeof(AboutPage));
+			ElementCompositionPreview.SetAppWindowContent(aboutPageWindow, aboutPageFrame);
+
+			// Finish setting up the window.
+			aboutPageWindow.RequestSize(new Size(500, 300));
+			aboutPageWindow.Title = "About";
+			aboutPageWindow.Closed += delegate
+			{
+				aboutPageFrame.Content = null;
+				aboutPageWindow = null;
+			};
+
+			await aboutPageWindow.TryShowAsync();
 		}
 	}
 }

@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="BracketToMe.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BracketToMe.Source"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Width="500" Height="300">
+        <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="/Assets/LargeTile.scale-200.png"/>
+        <TextBlock x:Name="NameTextBlock" HorizontalAlignment="Left" Margin="115,10,0,0" TextWrapping="Wrap" Text="&lt;Name&gt;" VerticalAlignment="Top"/>
+        <TextBlock x:Name="VersionTextBlock" HorizontalAlignment="Left" Margin="115,34,0,0" TextWrapping="Wrap" Text="&lt;Version&gt;" VerticalAlignment="Top"/>
+        <HyperlinkButton x:Name="PublisherHyperlinkButton" Content="HyperlinkButton" Margin="115,57,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,115,0,0" TextWrapping="Wrap" Text="Bracket To Me is an application to automatically generate NCAA brackets from team data.&#xD;&#xA;&#xD;&#xA;Team data is stored in CSV format with a column each representing:&#xD;&#xA;* ID - a unique ID&#xD;&#xA;* Name - the team's name&#xD;&#xA;* Seed - the team's tournament seed&#xD;&#xA;* BPI Off - the team's BPI offensive strength&#xD;&#xA;* BPI Def - the team's BPI defensive strength&#xD;&#xA;* Record W - the number of wins in their overall record&#xD;&#xA;* Record L - the number of losses in their overall record&#xD;&#xA;* Conference W - the team's number of conference wins&#xD;&#xA;* Conference L - the team's number of conference losses&#xD;&#xA;* Vs Top 25 W - wins against top-25 ranked teams&#xD;&#xA;* Vs Top 25 L = losses against top-25 ranked teams&#xD;&#xA;* Last 10 W - wins in the last 10 games&#xD;&#xA;* Last 10 L - losses in the last 10 games&#xD;&#xA;* SOS Rank - the team's Strength of Schedule ranking&#xD;&#xA;* SOR Rank - the team's Strength of Record ranking&#xD;&#xA;* PPG - the team's average points-per-game&#xD;&#xA;* Opposing PPG - their opposing team's average points-per-game&#xD;&#xA;* Field Goal Percentage&#xD;&#xA;* Three-Point Percentage&#xD;&#xA;* Free Throw Percentage&#xD;&#xA;&#xD;&#xA;These stats are then fed in to various equations that can be tweaked with weights to predict an NCAA tournmanet bracket." VerticalAlignment="Top" Height="175" Width="480" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+    </Grid>
+</Page>

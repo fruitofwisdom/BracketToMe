@@ -4,20 +4,17 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace BracketToMe
 {
-	/// <summary>
-	/// An empty page that can be used on its own or navigated to within a Frame.
-	/// </summary>
+	// This page allows for the adjusting of weights by binding each slider to a public field in
+	// the static Weights class. As the slider values are changed, the tournament is re-simulated.
 	public sealed partial class AdjustWeightsPage : Page
 	{
 		private MainPage MainPage;
 
 		public AdjustWeightsPage()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -31,10 +28,7 @@ namespace BracketToMe
 
 		private void SliderValueChanged(object sender, RangeBaseValueChangedEventArgs e)
 		{
-			if (MainPage != null)
-			{
-				MainPage.SimulateTournament();
-			}
+			MainPage?.SimulateTournament();
 		}
 	}
 
@@ -43,12 +37,12 @@ namespace BracketToMe
 	{
 		public object Convert(object value, Type targetType, object parameter, string language)
 		{
-			return String.Format("{0:N2}", value);
+			return string.Format("{0:N2}", value);
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, string language)
 		{
-			return Double.Parse((string)value);
+			return double.Parse((string)value);
 		}
 	}
 }
