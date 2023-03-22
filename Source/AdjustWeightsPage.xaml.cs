@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
@@ -12,9 +14,14 @@ namespace BracketToMe
 	{
 		private MainPage MainPage;
 
+		private readonly Timer SimulateTimer;
+
 		public AdjustWeightsPage()
 		{
 			InitializeComponent();
+
+			// Create a Timer to simulate the tournament, but don't start it yet.
+			SimulateTimer = new Timer(WeightChanged, null, 0, 0);
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -28,7 +35,18 @@ namespace BracketToMe
 
 		private void SliderValueChanged(object sender, RangeBaseValueChangedEventArgs e)
 		{
-			MainPage?.SimulateTournament();
+			// Trigger our timer to run half a second from the last slider change, since the
+			// binding weight hasn't been updated yet.
+			SimulateTimer.Change(500, 0);
+		}
+
+		async private void WeightChanged(object stateInfo)
+		{
+			// Simulate the tournament, but on the UI thread.
+			await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+			{
+				MainPage?.SimulateTournament();
+			});
 		}
 	}
 
@@ -42,7 +60,9 @@ namespace BracketToMe
 
 		public object ConvertBack(object value, Type targetType, object parameter, string language)
 		{
-			return double.Parse((string)value);
+			// Return 0.0 if we couldn't parse the value.
+			double.TryParse((string)value, out double weightAsDouble);
+			return weightAsDouble;
 		}
 	}
 }
