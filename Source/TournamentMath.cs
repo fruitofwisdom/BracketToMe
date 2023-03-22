@@ -25,7 +25,7 @@ namespace BracketToMe
 		// How much should the BPI and record factor into a team's performance?
 		public static float BpiFactorWeight = 0.3f;
 		public static float RecordFactorWeight = 0.7f;
-		public static float OverallFactorWeight = 0.1f;
+		public static float OverallFactorWeight = 0.2f;
 
 		// How many attempts of each type per game should be considered?
 		// NOTE: NCAA standard has been 50% of all points from field goals, 30% three-pointers,
