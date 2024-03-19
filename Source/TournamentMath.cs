@@ -10,21 +10,21 @@ namespace BracketToMe
 		public static float CalculatedWeight = 0.4f;
 
 		// For the BPI factor, how much should each be weighted?
-		public static float SeedWeight = 0.2f;
-		public static float BpiOffWeight = 0.4f;
-		public static float BpiDefWeight = 0.4f;
+		public static float SeedWeight = 0.0f;
+		public static float BpiOffWeight = 0.5f;
+		public static float BpiDefWeight = 0.5f;
 
 		// For the record factor, how much should each be weighted?
-		public static float RecordWeight = 0.25f;
-		public static float ConferenceWeight = 0.25f;
-		public static float VsTop25Weight = 0.05f;
-		public static float Last10Weight = 0.15f;
-		public static float SosRankWeight = 0.1f;
-		public static float SorRankWeight = 0.2f;
+		public static float RecordWeight = 0.4f;
+		public static float ConferenceWeight = 0.4f;
+		public static float VsTop25Weight = 0.0f;
+		public static float Last10Weight = 0.2f;
+		public static float SosRankWeight = 0.0f;
+		public static float SorRankWeight = 0.0f;
 
 		// How much should the BPI and record factor into a team's performance?
-		public static float BpiFactorWeight = 0.3f;
-		public static float RecordFactorWeight = 0.7f;
+		public static float BpiFactorWeight = 0.6f;
+		public static float RecordFactorWeight = 0.4f;
 		public static float OverallFactorWeight = 0.2f;
 
 		// How many attempts of each type per game should be considered?
@@ -33,6 +33,12 @@ namespace BracketToMe
 		public static int FieldGoalAttempts = 37;
 		public static int ThreePointAttempts = 22;
 		public static int FreeThrowAttempts = 20;
+
+		// These values are calculated after all team data is loaded.
+		public static float MinBpiOff = 0.0f;
+		public static float MaxBpiOff = 0.0f;
+		public static float MinBpiDef = 0.0f;
+		public static float MaxBpiDef = 0.0f;
 	}
 
 	public class TournamentMath
@@ -98,12 +104,10 @@ namespace BracketToMe
 
 		private static float CalculateBpiFactor(Team team)
 		{
-			// A 1-seed is 100%, a 16-seed is 0%.
+			// Compare seed, BPI offensive, and BPI defensive scores based on relative ranges.
 			float seedFactor = GetLinearResult(17 - team.Seed, 1.0f, 16.0f);
-			// A BPI offensive score of 12 or higher is 100%, -1 or lower is 0%.
-			float bpiOffFactor = GetLinearResult(team.BpiOff, -1.0f, 12.0f);
-			// A BPI defensive score of 10 or higher is 100%, -1 or lower is 0%.
-			float bpiDefFactor = GetLinearResult(team.BpiDef, -1.0f, 10.0f);
+			float bpiOffFactor = GetLinearResult(team.BpiOff, Weights.MinBpiOff, Weights.MaxBpiOff);
+			float bpiDefFactor = GetLinearResult(team.BpiDef, Weights.MinBpiDef, Weights.MaxBpiDef);
 			float bpiFactor =
 				seedFactor * Weights.SeedWeight +
 				bpiOffFactor * Weights.BpiOffWeight +

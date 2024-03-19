@@ -88,6 +88,27 @@ namespace BracketToMe
 				}
 			}
 
+			// Calculate some weights based off loaded data.
+			foreach (Team team in Teams)
+			{
+				if (team.BpiOff < Weights.MinBpiOff)
+				{
+					Weights.MinBpiOff = team.BpiOff;
+				}
+				if (team.BpiOff > Weights.MaxBpiOff)
+				{
+					Weights.MaxBpiOff = team.BpiOff;
+				}
+				if (team.BpiDef < Weights.MinBpiDef)
+				{
+					Weights.MinBpiDef = team.BpiDef;
+				}
+				if (team.BpiDef > Weights.MaxBpiDef)
+				{
+					Weights.MaxBpiDef = team.BpiDef;
+				}
+			}
+
 			return true;
 		}
 	}
