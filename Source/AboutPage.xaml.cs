@@ -17,7 +17,7 @@ namespace BracketToMe
 			Package package = Package.Current;
 			if (FindName("VersionTextBlock") is TextBlock versionTextBlock)
 			{
-				versionTextBlock.Text = package.Id.Version.Major + "." + package.Id.Version.Minor;
+				versionTextBlock.Text = "Version " + package.Id.Version.Major + "." + package.Id.Version.Minor;
 			}
 			if (FindName("PublisherHyperlinkButton") is HyperlinkButton publisherHyperlinkButton)
 			{
