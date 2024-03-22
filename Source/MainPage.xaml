@@ -25,7 +25,7 @@
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" RelativePanel.Below="Menu">
             <Canvas Width="1250" Height="1600">
                 <Canvas.Background>
-                    <ImageBrush ImageSource="/Assets/CourtBackgroundFull.png" Stretch="None"/>
+                    <ImageBrush ImageSource="/Assets/CourtBackgroundBlurred.png" Stretch="None"/>
                 </Canvas.Background>
                 <local:ResultControl Canvas.Left="25" Canvas.Top="25" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('WestSeed1')}"/>
                 <local:ResultControl Canvas.Left="25" Canvas.Top="55" Result="{x:Bind Mode=OneWay, Path=Results.LookUpResults('WestSeed16')}"/>

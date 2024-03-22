@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace BracketToMe
 {
@@ -76,9 +77,11 @@ namespace BracketToMe
 			return toReturn;
 		}
 
-		public async Task<bool> ReadFile(Windows.Storage.StorageFile file)
+		public async Task<bool> ReadFile(StorageFile file)
 		{
-			IList<string> lines = await Windows.Storage.FileIO.ReadLinesAsync(file);
+			Teams.Clear();
+
+			IList<string> lines = await FileIO.ReadLinesAsync(file);
 			foreach (string line in lines)
 			{
 				string[] fields = line.Split(',');
