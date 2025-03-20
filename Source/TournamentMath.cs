@@ -11,8 +11,8 @@ namespace BracketToMe
 
 		// For the BPI factor, how much should each be weighted?
 		public static float SeedWeight = 0.1f;
-		public static float BpiOffWeight = 0.5f;
-		public static float BpiDefWeight = 0.4f;
+		public static float BpiOffWeight = 0.4f;
+		public static float BpiDefWeight = 0.6f;
 
 		// For the record factor, how much should each be weighted?
 		public static float RecordWeight = 0.4f;

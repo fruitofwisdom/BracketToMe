@@ -14,8 +14,8 @@ namespace BracketToMe
 		public float BpiOff;			// The team's BPI offensive strength.
 		public float BpiDef;			// The team's BPI defensive strength.
 
-		public int RecordW;				// The number of wins in their overall record.
-		public int RecordL;				// The number of losses in their overall record.
+		public float RecordW;			// The number of wins in their overall record.
+		public float RecordL;			// The number of losses in their overall record.
 		public int ConferenceW;			// The team's number of conference wins.
 		public int ConferenceL;			// The team's number of conference losses.
 		public int VsTop25W;			// Wins against top-25 ranked teams.
@@ -39,8 +39,8 @@ namespace BracketToMe
 			// BpiRank used to be field 3. Now ignored.
 			BpiOff = fields[4] == "" ? 0.0f : float.Parse(fields[4]);
 			BpiDef = fields[5] == "" ? 0.0f : float.Parse(fields[5]);
-			RecordW = fields[6] == "" ? 0 : int.Parse(fields[6]);
-			RecordL = fields[7] == "" ? 0 : int.Parse(fields[7]);
+			RecordW = fields[6] == "" ? 0 : float.Parse(fields[6]);
+			RecordL = fields[7] == "" ? 0 : float.Parse(fields[7]);
 			ConferenceW = fields[8] == "" ? 0 : int.Parse(fields[8]);
 			ConferenceL = fields[9] == "" ? 0 : int.Parse(fields[9]);
 			VsTop25W = fields[10] == "" ? 0 : int.Parse(fields[10]);
