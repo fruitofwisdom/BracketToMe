@@ -23,4 +23,4 @@ Team data is stored in CSV format with a column each representing:
 * Three-Point Percentage
 * Free Throw Percentage
 
-These stats are then fed in to various equations that can be tweaked with weights to predict an NCAA tournmanet bracket.
+These stats are then fed in to various equations that can be tweaked with weights to predict an NCAA tournament bracket.
